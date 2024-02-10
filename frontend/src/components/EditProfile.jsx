@@ -12,7 +12,7 @@ const EditProfile = () => {
 
   const fetchDetails = async () => {
     axios
-      .get("http://localhost:2000/getmyinfo", {
+      .get("https://give-and-ask-application.onrender.com/getmyinfo", {
         headers: {
           authorization: token,
         },
@@ -57,11 +57,15 @@ const EditProfile = () => {
       }
       formData.append("password", input.password ? input.password : "");
       axios
-        .post("http://localhost:2000/updateprofile", formData, {
-          headers: {
-            authorization: token,
-          },
-        })
+        .post(
+          "https://give-and-ask-application.onrender.com/updateprofile",
+          formData,
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        )
         .then((res) => {
           if (res.data.status == 1) {
             toast.success(res.data.message);
@@ -72,12 +76,12 @@ const EditProfile = () => {
           if (err.response.status == 500) {
             toast.error(err.response.data.message);
           } else if (err.response.status == 400) {
-            localStorage.clear()
+            localStorage.clear();
             navigate("/");
             toast.error(err.response.data.message);
           } else if (err.response.status == 403) {
             toast.error(err.response.data.message);
-            localStorage.clear()
+            localStorage.clear();
             navigate("/");
           } else if (err.response.status == 422) {
             let arr = err.response.data.validationError;

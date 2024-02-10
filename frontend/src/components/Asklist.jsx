@@ -13,7 +13,7 @@ const Asklist = () => {
 
     const fetchask = () => {
 
-        axios.get('http://localhost:2000/fetchgiveask',
+        axios.get('https://give-and-ask-application.onrender.com/fetchgiveask',
             {
                 headers: {
                     'authorization': token

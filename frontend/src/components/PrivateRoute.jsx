@@ -22,7 +22,7 @@ const PrivateRoute = ({ Component }) => {
         console.log('from private route',token);
         const formData = new FormData()
         formData.append('token', token)
-        axios.post('http://localhost:2000/verifytoken', formData).then((res)=>{
+        axios.post('https://give-and-ask-application.onrender.com/verifytoken', formData).then((res)=>{
            
         }).catch((err)=>{
             if (err.response.data.status == 0 || err.response.data.status == -1) {

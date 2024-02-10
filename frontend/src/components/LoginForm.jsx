@@ -25,7 +25,7 @@ const LoginForm = () => {
     formData.append("password", input.password);
 
     axios
-      .post("http://localhost:2000/login", formData)
+      .post("https://give-and-ask-application.onrender.com/login", formData)
       .then((res) => {
         setInput({
           user_name: "",
@@ -56,15 +56,16 @@ const LoginForm = () => {
           user_name: "",
           password: "",
         });
-        setError({});
+
         console.log("err", err);
-        // if(err.response.status == 400){
-        //   toast.warning(err.response.data.message)
-        // }
+        if (err.response.status == 401) {
+          toast.error(err.response.data.message);
+        }
         // else if(err.response.status == 403){
         //   toast.warning(err.response.data.message)
         // }
         if (err.response.status == 422) {
+          setError({});
           let arr = err.response.data.validationError;
           let errorData = {};
           arr.map((x) => {

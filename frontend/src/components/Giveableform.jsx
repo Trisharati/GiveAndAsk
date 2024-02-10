@@ -27,7 +27,7 @@ const Giveableform = () => {
 
 
         axios
-            .post("http://localhost:2000/creategiveable", formData,
+            .post("https://give-and-ask-application.onrender.com/creategiveable", formData,
                 {
                     headers: {
                         'authorization': token

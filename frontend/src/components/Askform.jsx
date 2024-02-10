@@ -27,7 +27,7 @@ const Askform = () => {
 
 
         axios
-            .post("http://localhost:2000/createask", formData,
+            .post("https://give-and-ask-application.onrender.com/createask", formData,
                 {
                     headers: {
                         'authorization': token

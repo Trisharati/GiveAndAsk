@@ -11,7 +11,7 @@ const ProfileDetails = () => {
     const [info, setInfo] = useState()
     const token = localStorage.getItem('userToken')
     const fetchDetails = async () => {
-        axios.get('http://localhost:2000/getmyinfo', {
+        axios.get('https://give-and-ask-application.onrender.com/getmyinfo', {
             headers: {
                 'authorization': token
             }
