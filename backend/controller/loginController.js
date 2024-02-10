@@ -46,17 +46,23 @@ async verifyToken(req,res){
 
 async updateInfo(req,res){
     console.log('body',req.body);
-    let userDetails = await userModel.findOne({user_name:req.user_name})
-    let obj={
-        ...req.body,
-        password:req.body.password===''?userDetails.password:bcrypt.hashSync(req.body.password,10)
+    const errors = validationResult(req);
+    console.log('errors',errors.array());
+    if(errors.array().length){
+        res.status(422).json({validationError:errors.array()})
+    }else{
+        let userDetails = await userModel.findOne({user_name:req.user_name})
+        let obj={
+            ...req.body,
+            password:req.body.password===''?userDetails.password:bcrypt.hashSync(req.body.password,10)
+        }
+        userModel.findOneAndUpdate({_id:userDetails._id},obj)
+        .then(()=>{
+            res.status(200).json({message:'Profile updated successfully',status:1})
+        }).catch((err)=>{
+            res.status(500).json({message:'Falied to update profile',status:0,Error:err})
+        })
     }
-    userModel.findOneAndUpdate({_id:userDetails._id},obj)
-    .then(()=>{
-        res.status(200).json({message:'Profile updated successfully',status:1})
-    }).catch((err)=>{
-        res.status(500).json({message:'Falied to update profile',status:0,Error:err})
-    })
 }
 
 }

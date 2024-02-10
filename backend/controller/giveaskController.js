@@ -17,7 +17,7 @@ class GiveAsk {
             if (req.body.give) {
                 let giveObj = {
                     user_id: userDetails._id,
-                    give: req.body.give
+                    give: req.body.give.trim()
                 }
                 let data = await giveaskModel.create(giveObj)
                 if (data._id) {
@@ -29,7 +29,7 @@ class GiveAsk {
             else if (req.body.ask) {
                 let askObj = {
                     user_id: userDetails._id,
-                    ask: req.body.ask
+                    ask: req.body.ask.trim()
                 }
                 let data = await giveaskModel.create(askObj)
                 if (data._id) {

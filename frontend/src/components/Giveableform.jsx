@@ -60,9 +60,13 @@ const Giveableform = () => {
                 }
                 else if (err.response.status == 400) {
                     toast.danger(err.response.data.message)
+                    localStorage.clear()
+                    navigate("/");
                 }
                 else if (err.response.status == 403) {
                     toast.danger(err.response.data.message)
+                    localStorage.clear()
+                    navigate("/");
                 }
             });
         // setInput();

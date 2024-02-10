@@ -36,7 +36,8 @@ const Matches = () => {
 
                     let obj = {
                         field: y.give,
-                        user: userdetail
+                        username: y.userdetails[0].username,
+                        usermail: y.userdetails[0].mail
 
                     }
                     matchDetails.push(obj)
@@ -69,12 +70,12 @@ const Matches = () => {
     return (
         <div>
             <Navbar />
-            {matchDetails.length &&
+            {matchDetails.length>0 &&
                 <div class="container">
                     <div class="row justify-content-center mt-5">
                         <div class="col-md-8">
 
-                            {matchDetails.map((x) => (
+                            {matchDetails.map((x,idx) => (
                                 <div class="card custom-card">
                                     <div className="card-header">
                                         {x.field}
@@ -89,13 +90,13 @@ const Matches = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {x.map((y, idx) => (
+                                                
                                                     <tr key={idx}>
                                                         <th scope="row">{idx + 1}</th>
-                                                        <td>{y.username}</td>
+                                                        <td>{x.username}</td>
                                                         <td>{x.usermail}</td>
                                                     </tr>
-                                                ))}
+                                                
 
                                             </tbody>
                                         </table>
