@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import OpenApi from "./OpenApi";
 
 const LoginForm = () => {
   const [error, setError] = useState({});
@@ -24,8 +25,8 @@ const LoginForm = () => {
     formData.append("user_name", input.user_name);
     formData.append("password", input.password);
 
-    axios
-      .post("https://give-and-ask-application.onrender.com/login", formData)
+    OpenApi
+      .post("/login", formData)
       .then((res) => {
         setInput({
           user_name: "",

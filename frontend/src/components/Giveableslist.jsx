@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import OpenApi from "./OpenApi";
 
 const Giveableslist = () => {
   const [give, setGive] = useState([]);
@@ -11,8 +12,8 @@ const Giveableslist = () => {
   const token = localStorage.getItem("userToken");
   let arr = [];
   const fetchGiveables = () => {
-    axios
-      .get("https://give-and-ask-application.onrender.com/fetchgiveask", {
+    OpenApi
+      .get("/fetchgiveask", {
         headers: {
           authorization: token,
         },

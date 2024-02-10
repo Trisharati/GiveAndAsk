@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import OpenApi from "./OpenApi";
 
 import axios from 'axios'
 
@@ -22,7 +22,7 @@ const PrivateRoute = ({ Component }) => {
         console.log('from private route',token);
         const formData = new FormData()
         formData.append('token', token)
-        axios.post('https://give-and-ask-application.onrender.com/verifytoken', formData).then((res)=>{
+        OpenApi.post('/verifytoken', formData).then((res)=>{
            
         }).catch((err)=>{
             if (err.response.data.status == 0 || err.response.data.status == -1) {

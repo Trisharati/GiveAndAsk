@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+OpenApi
 const EditProfile = () => {
   const [info, setInfo] = useState();
   const [input, setInput] = useState({});
@@ -11,12 +12,11 @@ const EditProfile = () => {
   const navigate = useNavigate();
 
   const fetchDetails = async () => {
-    axios
-      .get("https://give-and-ask-application.onrender.com/getmyinfo", {
-        headers: {
-          authorization: token,
-        },
-      })
+    OpenApi.get("/getmyinfo", {
+      headers: {
+        authorization: token,
+      },
+    })
       .then((res) => {
         console.log("res", res);
         setInfo(res.data.MyInfo);

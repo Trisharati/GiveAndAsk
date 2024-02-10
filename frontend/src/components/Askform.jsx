@@ -3,6 +3,7 @@ import axios from 'axios';
 import Navbar from './Navbar'
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import OpenApi from "./OpenApi";
 
 const Askform = () => {
 
@@ -26,8 +27,8 @@ const Askform = () => {
         formData.append('ask', input.ask);
 
 
-        axios
-            .post("https://give-and-ask-application.onrender.com/createask", formData,
+        OpenApi
+            .post("/createask", formData,
                 {
                     headers: {
                         'authorization': token
