@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const headers = {
     // 'Content-Type': 'multipart/form-data'
-    'Content-Type': 'application/javasript'
+    // 'Content-Type': 'application/javasript'
 };
 
 const OpenApi = axios.create({
