@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-OpenApi
+import OpenApi from "./OpenApi";
 const EditProfile = () => {
   const [info, setInfo] = useState();
   const [input, setInput] = useState({});

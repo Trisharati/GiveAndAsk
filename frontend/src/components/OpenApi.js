@@ -2,7 +2,8 @@
 import axios from 'axios';
 
 const headers = {
-    'Content-Type': 'multipart/form-data'
+    // 'Content-Type': 'multipart/form-data'
+    'Content-Type': 'text/plain'
 };
 
 const OpenApi = axios.create({
