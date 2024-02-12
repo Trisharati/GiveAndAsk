@@ -22,6 +22,8 @@ router.post("/updateprofile", updateValidation, loginController.updateInfo);
 router.post("/creategiveable", giveValidation, giveaskController.createNeed);
 router.post("/createask", askValidation, giveaskController.createNeed);
 
+router.get('/my-give/:userId',giveaskController.myGive)
+router.get('/my-ask/:userId',giveaskController.myAsk)
 router.get("/fetchgiveask", giveaskController.fetchGiveAsk);
 
 router.get("/matches", giveaskController.matches);

@@ -14,12 +14,7 @@ const Asklist = () => {
 
     const fetchask = () => {
 
-        OpenApi.get('/fetchgiveask',
-            {
-                headers: {
-                    'authorization': token
-                }
-            }).then((res) => {
+        OpenApi.get('/fetchgiveask').then((res) => {
                 console.log('res', res);
                 let newAsk = res.data.details
                     .filter(x => x.ask) // Filter out objects where 'x.give' is not present or falsy

@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import OpenApi from "./OpenApi";
 
 const Matches = () => {
   const navigate = useNavigate();
@@ -13,12 +14,8 @@ const Matches = () => {
 
   let matchDetails = [];
   const fetchMatches = async () => {
-    axios
-      .get("http://localhost:2000/matches", {
-        headers: {
-          authorization: token,
-        },
-      })
+    OpenApi
+      .get("/matches")
       .then((res) => {
         console.log("res", res);
         let arr = res.data.matchesFound;
