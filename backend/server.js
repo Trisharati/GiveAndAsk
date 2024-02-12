@@ -20,7 +20,7 @@ mongoose.connect(process.env.DATABASE_STRING, {
 }).then(()=>{
     app.listen(port,()=>{
         console.log(`server connected at ${port}`);
-        console.log(process.env.DATABASE_STRING);
+        // console.log(process.env.DATABASE_STRING);
     })
 }).catch((err) => {
     console.log('Error in connecting Database', err)

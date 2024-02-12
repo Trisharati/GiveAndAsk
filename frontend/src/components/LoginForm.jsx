@@ -41,6 +41,7 @@ const LoginForm = () => {
           navigate("/");
         };
         if (res.data.status == 1) {
+          navigate("/navbar");
           toast.success(res.data.message);
           localStorage.setItem("userToken", res.data.token);
           localStorage.setItem("user_name", res.data.user_name);
@@ -50,7 +51,6 @@ const LoginForm = () => {
           const currentTime = Date.now();
           const timeRemaining = getExpTime - currentTime;
           setTimeout(logout, timeRemaining);
-          navigate("/navbar");
         }
       })
       .catch((err) => {
