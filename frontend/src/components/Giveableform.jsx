@@ -11,7 +11,7 @@ const Giveableform = () => {
     const [error, setError] = useState({});
     const [input, setInput] = useState({ give: '' });
     const navigate = useNavigate();
-    const token = localStorage.getItem('userToken')
+    
 
 
     const handleChange = (e) => {
@@ -28,12 +28,7 @@ const Giveableform = () => {
 
 
         OpenApi
-            .post("/creategiveable", formData,
-                {
-                    headers: {
-                        'authorization': token
-                    }
-                })
+            .post("/creategiveable", formData)
             .then((res) => {
                 setError({});
                 console.log('res', res);

@@ -13,11 +13,7 @@ const Giveableslist = () => {
   let arr = [];
   const fetchGiveables = () => {
     OpenApi
-      .get("/fetchgiveask", {
-        headers: {
-          authorization: token,
-        },
-      })
+      .get("/fetchgiveask")
       .then((res) => {
         console.log("res", res);
         let newGive = res.data.details
@@ -32,13 +28,13 @@ const Giveableslist = () => {
       .catch((err) => {
         console.log("error in fetching", err);
         if (err.response.status == 500) {
-          toast.danger(err.response.data.message);
+          toast.error(err.response.data.message);
         } else if (err.response.status == 400) {
-          toast.danger(err.response.data.message);
+          toast.error(err.response.data.message);
           localStorage.clear();
           navigate("/");
         } else if (err.response.status == 403) {
-          toast.danger(err.response.data.message);
+          toast.error(err.response.data.message);
           localStorage.clear();
           navigate("/");
         }

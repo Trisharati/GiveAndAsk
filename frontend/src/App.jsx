@@ -15,7 +15,7 @@ import Matches from "./components/Matches";
 function App() {
   return (
     <>
-      <Router>
+     <Router >
         <ToastContainer />
         <Routes>
           <Route path="/" element={<LoginForm />}></Route>

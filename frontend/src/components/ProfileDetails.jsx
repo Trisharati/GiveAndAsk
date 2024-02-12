@@ -60,7 +60,7 @@ const ProfileDetails = () => {
                   ) : null}
                   <h5 class="card-title">Business Name</h5>
                   <span>{info.business_name}</span>
-                  <h5 class="card-title">Category</h5>
+                  <h5 class="card-title">Category1</h5>
                   <span>{info.category}</span>
                   <h5 class="card-title">Address</h5>
                   <span>{info.address}</span>

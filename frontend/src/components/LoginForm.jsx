@@ -41,7 +41,7 @@ const LoginForm = () => {
           navigate("/");
         };
         if (res.data.status == 1) {
-          navigate("/navbar");
+          navigate("/profiledetails");
           toast.success(res.data.message);
           localStorage.setItem("userToken", res.data.token);
           localStorage.setItem("user_name", res.data.user_name);
@@ -94,6 +94,7 @@ const LoginForm = () => {
             id="username"
             name="user_name"
             onChange={handleChange}
+            autoComplete="username" 
           />
           <span style={{ color: "red" }}>{error.user_name}</span>
         </div>
@@ -104,6 +105,7 @@ const LoginForm = () => {
             id="password"
             name="password"
             onChange={handleChange}
+            autoComplete="current-password"
           />
           <span style={{ color: "red" }}>{error.password}</span>
         </div>

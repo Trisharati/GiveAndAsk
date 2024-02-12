@@ -56,16 +56,8 @@ const EditProfile = () => {
         formData.append("mail", input.mail ? input.mail : info.mail);
       }
       formData.append("password", input.password ? input.password : "");
-      axios
-        .post(
-          "https://give-and-ask-application.onrender.com/updateprofile",
-          formData,
-          {
-            headers: {
-              authorization: token,
-            },
-          }
-        )
+      OpenApi
+        .post("/updateprofile",formData)
         .then((res) => {
           if (res.data.status == 1) {
             toast.success(res.data.message);
