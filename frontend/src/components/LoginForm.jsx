@@ -84,12 +84,15 @@ const LoginForm = () => {
   };
 
   return (
-    <div class="login-container">
+    <div class="full-width text-center">
+      <img src="img/evo_connect.png" className="logo-img"/>
+    <div class="login-container  text-left">
       <h2>Login</h2>
       <form id="login-form" onSubmit={handleSubmit}>
         <div class="form-group">
           <label for="username">Username</label>
           <input
+            className="form-control"
             type="text"
             id="username"
             name="user_name"
@@ -99,7 +102,8 @@ const LoginForm = () => {
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input
+          <input 
+            className="form-control"
             type="password"
             id="password"
             name="password"
@@ -109,6 +113,7 @@ const LoginForm = () => {
         </div>
         <button type="submit">Login</button>
       </form>
+    </div>
     </div>
   );
 };
