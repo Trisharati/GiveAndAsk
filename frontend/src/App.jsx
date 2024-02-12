@@ -11,11 +11,12 @@ import Giveableform from "./components/Giveableform";
 import Askform from "./components/Askform";
 import Asklist from "./components/Asklist";
 import Matches from "./components/Matches";
+import MyGives from "./components/MyGives";
 
 function App() {
   return (
     <>
-     <Router >
+      <Router >
         <ToastContainer />
         <Routes>
           <Route path="/" element={<LoginForm />}></Route>
@@ -36,12 +37,20 @@ function App() {
             element={<PrivateRoute Component={Giveableslist} />}
           />
           <Route
+            path="/my-gives/:userId"
+            element={<PrivateRoute Component={MyGives} />}
+          />
+          <Route
             path="/giveableform"
             element={<PrivateRoute Component={Giveableform} />}
           />
           <Route
             path="/asklist"
             element={<PrivateRoute Component={Asklist} />}
+          />
+            <Route
+            path="/my-asks/:userId"
+            element={<PrivateRoute Component={MyGives} />}
           />
           <Route
             path="/askform"
