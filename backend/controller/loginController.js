@@ -46,10 +46,11 @@ async verifyToken(req,res){
 
 async updateInfo(req,res){
     console.log('body',req.body);
-    const errors = validationResult(req);
-    console.log('errors',errors.array());
-    if(errors.array().length){
-        res.status(422).json({validationError:errors.array()})
+    // const errors = validationResult(req);
+    let error = req.uploadErr;
+    console.log('error',error);
+    if(error){
+        res.status(422).json({validationError:error})
     }else{
         let userDetails = await userModel.findOne({user_name:req.user_name})
         let obj={

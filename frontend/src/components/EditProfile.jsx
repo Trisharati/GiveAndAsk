@@ -32,6 +32,9 @@ const EditProfile = () => {
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
+    if (e.target.files) {
+      setInput({ ...input, [e.target.name]: e.target.files[0] });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -56,6 +59,7 @@ const EditProfile = () => {
         formData.append("mail", input.mail ? input.mail : info.mail);
       }
       formData.append("password", input.password ? input.password : "");
+      formData.append("image", input.image);
       OpenApi
         .post("/updateprofile",formData)
         .then((res) => {
@@ -168,6 +172,16 @@ const EditProfile = () => {
                   />
                 </div>
 
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Profile Picture</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="exampleInputPassword1"
+                    name="image"
+                    onChange={handleChange}
+                  />
+                </div>
                 <button type="submit" class="btn btn-primary">
                   Submit
                 </button>
