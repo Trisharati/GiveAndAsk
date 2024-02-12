@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const userModel = require('../models/loginSchema')
 const giveaskModel = require('../models/giveAndAskSchema')
 const { validationResult } = require("express-validator");
+let nodemailer = require('nodemailer');
 
 class GiveAsk {
 
@@ -21,6 +22,28 @@ class GiveAsk {
                 }
                 let data = await giveaskModel.create(giveObj)
                 if (data._id) {
+                    var transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: 'intellectualautumn@gmail.com',
+                            pass: 'Ams.terdam6'
+                        }
+                    });
+
+                    var mailOptions = {
+                        from: 'intellectualautumn@gmail.com',
+                        to: 'webdevarisu3@gmail.com',
+                        subject: 'Sending Email using Node.js',
+                        text: 'That was easy!'
+                    };
+
+                    transporter.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            console.log('Email sent: ' + info.response);
+                        }
+                    });
                     res.status(200).json({ message: 'Giveable created successfully', status: 1 })
                 } else {
                     res.status(500).json({ message: 'Failed to create giveable', status: 0 })
@@ -103,8 +126,8 @@ class GiveAsk {
                             as: 'userdetails'
                         }
                     },
-                    
-                    
+
+
                 ])
                 matchesFound.push(result)
             })
