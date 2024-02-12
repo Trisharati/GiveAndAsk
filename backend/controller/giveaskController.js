@@ -91,6 +91,25 @@ class GiveAsk {
         })
     }
 
+    async myGive(req,res){
+        console.log('req.params.userId',req.params.userId);
+        let MyGiveAsk = await giveaskModel.find({user_id:req.params.userId})
+        let mygives = await MyGiveAsk.filter((x)=>{
+            return x.give
+        })
+        res.status(200).json({MyGives:mygives})
+    }
+
+    async myAsk(req,res){
+        console.log('req.params.userId',req.params.userId);
+        let MyGiveAsk = await giveaskModel.find({user_id:req.params.userId})
+        let myasks = await MyGiveAsk.filter((x)=>{
+            return x.ask
+        })
+        console.log('my asks',myasks);
+        res.status(200).json({MyAsks:myasks})
+    }
+
     async matches(req, res) {
 
         let user = await userModel.findOne({ user_name: req.user_name })

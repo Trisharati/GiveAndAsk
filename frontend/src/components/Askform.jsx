@@ -28,12 +28,7 @@ const Askform = () => {
 
 
         OpenApi
-            .post("/createask", formData,
-                {
-                    headers: {
-                        'authorization': token
-                    }
-                })
+            .post("/createask", formData)
             .then((res) => {
                 setError({});
                 console.log('res', res);
