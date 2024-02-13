@@ -8,7 +8,7 @@ import Footer from "./Footer";
 
 const ProfileDetails = () => {
   const navigate = useNavigate();
-
+  
   const [info, setInfo] = useState();
   const token = localStorage.getItem("userToken");
   const fetchDetails = async () => {
@@ -57,10 +57,12 @@ const ProfileDetails = () => {
 
                   </a>
               <div className="text-center">
-                <img src="/public/vite.svg" width={100} className="rounded-circle" />
+                {/* <img src="/public/vite.svg" width={100} className="rounded-circle" /> */}
+                <img src={`http://localhost:2000/${info.image}`} width={100} className="rounded-circle" />
                 <h3 className="mt-2">{info.name}</h3>
                 <span className="mt-1 clearfix">{info.user_name}</span>
                 <span className="mt-1 clearfix">{info.mail}</span>
+                <span className="mt-1 clearfix">{info.phone}</span>
                 <div className="row mt-3 mb-3  align-items-center justify-content-center">
                   <div className="col-md-6">
                     <h5>Business Name</h5>
