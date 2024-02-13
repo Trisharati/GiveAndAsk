@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import axios from 'axios';
 import Navbar from './Navbar'
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import OpenApi from "./OpenApi";
+import Footer from './Footer';
 
 const Askform = () => {
 
@@ -88,6 +88,7 @@ const Askform = () => {
                     </div>
                 </div>
             </div >
+            <Footer/>            
         </div>
     )
 }

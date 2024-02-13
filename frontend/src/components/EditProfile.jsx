@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
+
 import OpenApi from "./OpenApi";
+import Footer from "./Footer";
 const EditProfile = () => {
   const [info, setInfo] = useState();
   const [input, setInput] = useState({});
@@ -191,6 +192,7 @@ const EditProfile = () => {
           </div>
         </div>
       )}
+      <Footer/>
     </div>
   );
 };

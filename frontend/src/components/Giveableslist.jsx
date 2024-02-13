@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
 import OpenApi from "./OpenApi";
+import Footer from "./Footer";
 
 const Giveableslist = () => {
   const [give, setGive] = useState([]);
@@ -87,6 +87,7 @@ const Giveableslist = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

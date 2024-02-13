@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import OpenApi from "./OpenApi";
+import Footer from "./Footer";
 
 const ProfileDetails = () => {
   const navigate = useNavigate();
@@ -104,6 +105,7 @@ const ProfileDetails = () => {
           </div>
         </div>
       )}
+      <Footer/>
     </div>
   );
 };

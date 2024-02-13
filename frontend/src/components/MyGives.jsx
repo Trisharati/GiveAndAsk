@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import OpenApi from "./OpenApi";
 import { useParams } from "react-router-dom";
+import Footer from "./Footer";
 
 const MyGives = () => {
     const [give, setGive] = useState([]);
@@ -72,6 +73,7 @@ const MyGives = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };
