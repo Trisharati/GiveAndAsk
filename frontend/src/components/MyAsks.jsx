@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 import OpenApi from "./OpenApi";
 import { useParams } from "react-router-dom";
+import Footer from "./Footer";
 
 const MyAsks = () => {
     const [ask, setAsk] = useState([]);
@@ -73,6 +74,7 @@ const MyAsks = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };

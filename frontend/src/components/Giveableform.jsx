@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import axios from 'axios';
 import Navbar from './Navbar'
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import OpenApi from "./OpenApi";
+import Footer from './Footer';
 
 const Giveableform = () => {
 
@@ -88,6 +88,7 @@ const Giveableform = () => {
                     </div>
                 </div>
             </div >
+            <Footer/>
         </div>
     )
 }
