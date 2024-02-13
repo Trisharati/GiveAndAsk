@@ -120,6 +120,6 @@ body {
     justify-content: space-between;
   }
   .navbar-light .navbar-nav .nav-link {
-    color: rgb(244 134 55);
+    color: rgb(244 134 55) !important;
     font-weight: 600;
 }
