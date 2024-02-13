@@ -9,15 +9,11 @@ const EditProfile = () => {
   const [info, setInfo] = useState();
   const [input, setInput] = useState({});
   const [error, setError] = useState({});
-  const token = localStorage.getItem("userToken");
+
   const navigate = useNavigate();
 
   const fetchDetails = async () => {
-    OpenApi.get("/getmyinfo", {
-      headers: {
-        authorization: token,
-      },
-    })
+    OpenApi.get("/getmyinfo")
       .then((res) => {
         console.log("res", res);
         setInfo(res.data.MyInfo);
@@ -42,7 +38,7 @@ const EditProfile = () => {
     e.preventDefault();
     e.target.reset();
     console.log("input", input);
-    
+
     if (!Object.keys(input).length) {
       toast.error("You have not made any change");
     } else {
@@ -62,7 +58,7 @@ const EditProfile = () => {
       formData.append("password", input.password ? input.password : "");
       formData.append("image", input.image);
       OpenApi
-        .post("/updateprofile",formData)
+        .post("/updateprofile", formData)
         .then((res) => {
           if (res.data.status == 1) {
             toast.success(res.data.message);
@@ -81,15 +77,16 @@ const EditProfile = () => {
             localStorage.clear();
             navigate("/");
           } else if (err.response.status == 422) {
-            let arr = err.response.data.validationError;
-            let errorData = {};
-            console.log('arr',arr);
-            arr.map((x) => {
-              if (errorData[x.path] == undefined) {
-                errorData[x.path] = x.msg;
-                setError((error) => ({ ...error, [x.path]: x.msg }));
-              }
-            });
+            // let arr = err.response.data.validationError;
+            setError({image:err.response.data.validationError})
+            // let errorData = {};
+            // console.log('arr', arr);
+            // arr.map((x) => {
+            //   if (errorData[x.path] == undefined) {
+            //     errorData[x.path] = x.msg;
+            //     setError((error) => ({ ...error, [x.path]: x.msg }));
+            //   }
+            // });
             {
               error && console.log("error", error);
             }
@@ -183,6 +180,7 @@ const EditProfile = () => {
                     name="image"
                     onChange={handleChange}
                   />
+                  <span style={{ color: "red" }}>{error.image}</span>
                 </div>
                 <button type="submit" class="btn btn-primary">
                   Submit
@@ -192,7 +190,7 @@ const EditProfile = () => {
           </div>
         </div>
       )}
-      <Footer/>
+      <Footer />
     </div>
   );
 };

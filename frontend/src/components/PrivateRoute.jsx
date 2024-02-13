@@ -36,13 +36,6 @@ const PrivateRoute = ({ Component }) => {
         logout()
     }, [])
 
-    
-    // const getExpTime = localStorage.getItem('tokenExpTime')
-    // const currentTime = Date.now()
-    // const timeRemaining = getExpTime - currentTime
-    // useEffect(() => {
-    //     setTimeout(logout, timeRemaining)
-    // }, [])
 
     return (
         <Component />

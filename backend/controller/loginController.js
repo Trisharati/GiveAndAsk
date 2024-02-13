@@ -46,6 +46,7 @@ async verifyToken(req,res){
 
 async updateInfo(req,res){
     console.log('body',req.body);
+    console.log('req.file',req.file);
     // const errors = validationResult(req);
     let error = req.uploadErr;
     
@@ -56,7 +57,8 @@ async updateInfo(req,res){
         let userDetails = await userModel.findOne({user_name:req.user_name})
         let obj={
             ...req.body,
-            password:req.body.password===''?userDetails.password:bcrypt.hashSync(req.body.password,10)
+            password:req.body.password===''?userDetails.password:bcrypt.hashSync(req.body.password,10),
+            image:req.file?req.file.filename:''
         }
         userModel.findOneAndUpdate({_id:userDetails._id},obj)
         .then(()=>{

@@ -16,6 +16,7 @@ const ProfileDetails = () => {
       .then((res) => {
         console.log("res", res);
         setInfo(res.data.MyInfo);
+       {info && console.log('info',info);} 
       })
       .catch((err) => {
         console.log("Error in displaying info", err);
@@ -52,8 +53,9 @@ const ProfileDetails = () => {
                   <b>{info.name}</b>
                 </div>
                 <div class="card-body">
-                  {/* <img src={`https://give-and-ask-application.onrender.com/${info.image}`} alt="Not found" />*/}
-                  <img src='/public/vite.svg' alt="Not found" />
+                  {/* <img src={`https://give-and-ask-application.onrender.com/${info.image}`} alt="Not found" /> */}
+                  {/* <img src='/vite.svg' alt="Not found" /> */}
+                  <img src={`http://localhost:2000/${info.image}`} alt="Not found" />
                   <h5 class="card-title">Username</h5>
                   <span>{info.user_name}</span>
                   {/* {info.mail ? ( */}
