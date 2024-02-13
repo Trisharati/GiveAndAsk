@@ -4,7 +4,7 @@ class AuthJwt{
 
     async auth(req,res,next){
         
-        const token = req.body.token || req.headers['authorization']
+        const token = req.body.token || req.headers['authorization'] || req.params.token
          
      
         if(token){

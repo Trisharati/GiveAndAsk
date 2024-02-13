@@ -12,8 +12,8 @@ app.use(express.json())
 
 const router=require('./router/routes')
 app.use(router)
-// app.use(express.static(path.join(__dirname,'public')));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname,'public/img')));
+// app.use(express.static('public/img'));
 mongoose.connect(process.env.DATABASE_STRING, {
     useUnifiedTopology: true,
     useNewUrlParser: true

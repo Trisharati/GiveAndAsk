@@ -9,7 +9,9 @@ const Navbar = () => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light ">
         <div className='mobile-container d-flex'>
-      <a className="navbar-brand" href="#"><img src="img/evo_connect.png" className="logo-img"/></a>
+      <a className="navbar-brand" href="#"><img src="img/evo_connect.png" className="logo-img"
+  onClick={()=>navigate('/home')}/> 
+  </a>
      
 
   <div className=" navbar-collapse" id="navbarSupportedContent">
