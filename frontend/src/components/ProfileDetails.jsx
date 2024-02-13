@@ -51,7 +51,8 @@ const ProfileDetails = () => {
                   <b>{info.name}</b>
                 </div>
                 <div class="card-body">
-                  <img src={`https://give-and-ask-application.onrender.com/${info.image}`} alt="Not found" />
+                  {/* <img src={`https://give-and-ask-application.onrender.com/${info.image}`} alt="Not found" /> */}
+                  <img src='/public/vite.svg' alt="Not found" />
                   <h5 class="card-title">Username</h5>
                   <span>{info.user_name}</span>
                   {/* {info.mail ? ( */}
@@ -100,8 +101,11 @@ const ProfileDetails = () => {
                 </div>
               </div>
             </div>
+            
           </div>
+   
         </div>
+        
       )}
     </div>
   );
