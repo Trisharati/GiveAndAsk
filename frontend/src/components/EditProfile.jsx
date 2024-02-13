@@ -32,13 +32,16 @@ const EditProfile = () => {
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
+    if (e.target.files) {
+      setInput({ ...input, [e.target.name]: e.target.files[0] });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.target.reset();
     console.log("input", input);
-    console.log("keys", Object.keys(input));
+    
     if (!Object.keys(input).length) {
       toast.error("You have not made any change");
     } else {
@@ -56,6 +59,7 @@ const EditProfile = () => {
         formData.append("mail", input.mail ? input.mail : info.mail);
       }
       formData.append("password", input.password ? input.password : "");
+      formData.append("image", input.image);
       OpenApi
         .post("/updateprofile",formData)
         .then((res) => {
@@ -78,6 +82,7 @@ const EditProfile = () => {
           } else if (err.response.status == 422) {
             let arr = err.response.data.validationError;
             let errorData = {};
+            console.log('arr',arr);
             arr.map((x) => {
               if (errorData[x.path] == undefined) {
                 errorData[x.path] = x.msg;
@@ -168,6 +173,16 @@ const EditProfile = () => {
                   />
                 </div>
 
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Profile Picture</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="exampleInputPassword1"
+                    name="image"
+                    onChange={handleChange}
+                  />
+                </div>
                 <button type="submit" class="btn btn-primary">
                   Submit
                 </button>

@@ -38,8 +38,8 @@ const Navbar = () => {
         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <a className="dropdown-item" href="#" onClick={()=>navigate('/profiledetails')}>Profile</a>
           <div className="dropdown-divider"></div>
-          {/* <a className="dropdown-item" href="#" onClick={()=>{navigate('/matches')}}>Matches</a>
-            <div className="dropdown-divider"></div> */}
+          <a className="dropdown-item" href="#" onClick={()=>{navigate('/matches')}}>Matches</a>
+            <div className="dropdown-divider"></div>
           <a className="dropdown-item" href="#" onClick={()=>{localStorage.clear();
             toast.success('Logged out');navigate('/')}}>Logout</a>
         </div>

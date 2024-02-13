@@ -75,7 +75,7 @@ class GiveAsk {
                     pipeline: [
                         {
                             $project: {
-                                user_name: 1
+                                name: 1
                             }
                         }
                     ],
@@ -137,7 +137,7 @@ class GiveAsk {
                             pipeline: [
                                 {
                                     $project: {
-                                        user_name: 1,
+                                        name: 1,
                                         mail: 1
                                     }
                                 }

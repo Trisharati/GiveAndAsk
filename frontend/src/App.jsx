@@ -12,6 +12,7 @@ import Askform from "./components/Askform";
 import Asklist from "./components/Asklist";
 import Matches from "./components/Matches";
 import MyGives from "./components/MyGives";
+import MyAsks from "./components/MyAsks";
 
 function App() {
   return (
@@ -50,7 +51,7 @@ function App() {
           />
             <Route
             path="/my-asks/:userId"
-            element={<PrivateRoute Component={MyGives} />}
+            element={<PrivateRoute Component={MyAsks} />}
           />
           <Route
             path="/askform"

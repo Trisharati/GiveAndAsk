@@ -45,7 +45,7 @@ const MyAsks = () => {
                     <div class="col-md-6">
                         <div class="card custom-card">
                             <div class="card-header ">
-                                <b>My Gives</b>
+                                <b>My Asks</b>
 
                             </div>
                             {ask && (

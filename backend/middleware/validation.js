@@ -4,10 +4,10 @@ const loginValidation = [
   body("user_name")
     .not()
     .isEmpty()
-    .withMessage("*Please enter user name")
-    .not()
-    .matches(/[0-9]/)
-    .withMessage("*Name should be string"),
+    .withMessage("*Please enter user name"),
+    // .not()
+    // .matches(/[0-9]/)
+    // .withMessage("*Name should be string"),
 
   body("password").not().isEmpty().withMessage("*Please enter password"),
   // .isLength({min:6}).withMessage('*Password length should be minimum 6')
