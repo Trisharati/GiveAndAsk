@@ -12,7 +12,7 @@ const ProfileDetails = () => {
   const [info, setInfo] = useState();
   const token = localStorage.getItem("userToken");
   const fetchDetails = async () => {
-    OpenApi.get("https://give-and-ask-application.onrender.com/getmyinfo")
+    OpenApi.get("/getmyinfo")
       .then((res) => {
         console.log("res", res);
         setInfo(res.data.MyInfo);
