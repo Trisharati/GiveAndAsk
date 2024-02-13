@@ -69,4 +69,29 @@ body {
   button:hover {
     background-color: #0056b3;
   }
-  
+  /**************footer********************/
+  .mobile-container{
+    width: 420px;
+    margin: 0 auto;
+  }
+  footer{
+    width:100%;
+    position: fixed;
+    bottom: 0;
+    left:0
+  }
+  .foot-link{
+    text-align: center;
+    background: #f4f4f4;
+    align-content: center;
+    justify-content: space-between;
+    padding: 10px 25px;
+  }
+  .foot-link i{
+    font-size: 18px;
+    color:#f48637;
+
+  }
+  .foot-link a{
+    cursor: pointer;
+  }
