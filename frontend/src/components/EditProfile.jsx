@@ -55,6 +55,9 @@ const EditProfile = () => {
       if (input.mail || info.mail) {
         formData.append("mail", input.mail ? input.mail : info.mail);
       }
+      if (input.phone || info.phone) {
+        formData.append("phone", input.phone ? input.phone : info.phone);
+      }
       formData.append("password", input.password ? input.password : "");
       formData.append("image", input.image);
       OpenApi
@@ -123,6 +126,18 @@ const EditProfile = () => {
                     aria-describedby="emailHelp"
                     name="mail"
                     defaultValue={info.mail ? info.mail : ""}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Contact Number</label>
+                  <input
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    name="phone"
+                    defaultValue={info.phone ? info.phone : ""}
                     onChange={handleChange}
                   />
                 </div>

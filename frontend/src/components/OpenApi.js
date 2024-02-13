@@ -13,9 +13,6 @@ const setHeaders = async () => {
 const OpenApi = axios.create({
     // baseURL: 'https://give-and-ask-application.onrender.com',
     baseURL: 'http://localhost:2000',
-    // headers: {
-    //     authorization:localStorage.getItem('userToken')
-    // }
 });
 
 // Interceptor to set headers before request is sent

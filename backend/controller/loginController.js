@@ -37,6 +37,7 @@ async verifyToken(req,res){
     async getMyInfo(req,res){
         let userDetails = await userModel.findOne({user_name:req.user_name})
         if(userDetails){
+            console.log('userdetails',userDetails);
             res.status(200).json({MyInfo:userDetails})
         }
         else{

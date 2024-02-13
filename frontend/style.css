@@ -32,7 +32,7 @@ body {
   border-radius: 5px;
 }
 .logo-img{
-  height: 100px;
+  height:80px;
   margin-bottom: 20px;
 }
   h2 {
@@ -69,4 +69,57 @@ body {
   button:hover {
     background-color: #0056b3;
   }
-  
+  /**************footer********************/
+  .mobile-container{
+    width: 420px;
+    margin: 0 auto;
+  }
+  footer{
+    width:100%;
+    position: fixed;
+    bottom: 0;
+    left:0
+  }
+  .foot-link{
+    text-align: center;
+    background: #f4f4f4;
+    align-content: center;
+    justify-content: space-between;
+    padding: 10px 25px;
+  }
+  .foot-link i{
+    font-size: 18px;
+    color:#f48637;
+
+  }
+  .foot-link a{
+    cursor: pointer;
+  }
+  /************profile***********/
+  .edit-butt{
+    position: absolute;
+    cursor: pointer;
+    color:#f48637;
+    font-size: 20px;
+  }
+  .link-butt{
+    background-color:#f48637;
+    padding: 7px 15px;
+    text-align: center;
+    color: #fff;
+    border-radius: 0.25rem;
+  }
+  .link-butt:hover{
+    color: #f48637;
+    background: #000;
+    text-decoration: none;
+  }
+  .social-buttons{
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+  }
+  .navbar-light .navbar-nav .nav-link {
+    color: rgb(244 134 55) !important;
+    font-weight: 600;
+}

@@ -3,6 +3,7 @@ const loginSchema = new mongoose.Schema({
     name:String,
     user_name:String,
     mail:String,
+    phone:String,
     password:String,
     address:String,
     category:String,

@@ -126,7 +126,8 @@ class GiveAsk {
                     {
                         $match: {
                             user_id: { $ne: user._id },
-                            give: { $regex: new RegExp(x, 'i') }
+                            // give: { $regex: new RegExp(x, 'i') }
+                            give: x 
                         }
                     },
                     {
