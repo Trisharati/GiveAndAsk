@@ -11,45 +11,43 @@ const Home = () => {
        
       <Navbar />
 
-        <div class="container">
+        <div class="mobile-container">
           <div class="row justify-content-center mt-5">
-            <div class="col-md-8">
-              <div class="card custom-card">
-                <div class="card-body">
+            <div class="col-md-12">
+              <div className='d-flex home-page-buts'>
                 <a
                     href="#"
-                    class="btn btn-primary"
+                    class="home-link"
                     onClick={() => navigate("/profiledetails")}
                   >
                     Profile
-                  </a>&nbsp;&nbsp;
+                  </a>
                   <a
                     href="#"
-                    class="btn btn-primary"
+                    class="home-link"
                     onClick={() => navigate("/giveablelist")}
                   >
                     Give
                   </a>
-                  <br /><br />
+                  
                   <a
                     href="#"
-                    class="btn btn-primary"
+                    class="home-link"
                     onClick={() => navigate("/asklist")}
                   >
                     Ask
-                  </a>&nbsp;&nbsp;
+                  </a>
                   <a
                     href="#"
-                    class="btn btn-primary"
+                    class="home-link"
                     onClick={() => navigate("/matches")}
                   >
                     Matches
                   </a>
                 </div>
-                </div>
-                </div>
-                </div>
-                </div>
+            </div>
+          </div>
+       </div>
 <Footer/>
     </div>
   )

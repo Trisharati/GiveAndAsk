@@ -85,7 +85,7 @@ const LoginForm = () => {
 
   return (
     <div class="full-width text-center">
-      <img src="img/evo_connect.png" className="logo-img"/>
+      <img src="img/evo_connect.png" className="logo-img mb-3"/>
     <div class="login-container  text-left">
       <h2>Login</h2>
       <form id="login-form" onSubmit={handleSubmit}>

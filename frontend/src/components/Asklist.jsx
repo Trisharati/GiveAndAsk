@@ -49,13 +49,13 @@ const Asklist = () => {
         <div>
             <Navbar />
 
-            <div class="container">
-                <div class="row justify-content-center mt-5">
-                    <div class="col-md-6">
-                        <div class="card custom-card">
-                            <div class="card-header">
-                                <b>Ask</b>
-                                <i class="fas fa-plus" style={{ marginLeft: '300px' }} onClick={() => navigate('/askform')}></i>
+            <div class="mobile-container">
+        <div class="row justify-content-center mt-3">
+          <div class="col-md-12">
+            <div class="card custom-card overflow-auto">
+              <div class="card-header d-flex justify-content-space-between align-items-center">
+                                <h3>Ask</h3>
+                                <a className="add-but"><i class="fas fa-plus" onClick={() => navigate('/askform')}></i></a> 
                             </div>
                             {ask &&
                                 <div class="card-body">
@@ -72,7 +72,7 @@ const Asklist = () => {
                                                 <tr key={idx}>
                                                     <th scope="row">{idx + 1}</th>
                                                     <td>{x.ask}</td>
-                                                    <td>{x.name}</td>
+                                                    <td><b>{x.name}</b></td>
                                                 </tr>
                                             ))}
 

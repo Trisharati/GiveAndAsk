@@ -49,17 +49,20 @@ const Giveableslist = () => {
     <div>
       <Navbar />
 
-      <div class="container">
-        <div class="row justify-content-center mt-5">
-          <div class="col-md-6">
-            <div class="card custom-card">
-              <div class="card-header">
-                <b>Giveables</b>
-                <i
-                  class="fas fa-plus"
-                  style={{ marginLeft: "300px" }}
-                  onClick={() => navigate("/giveableform")}
-                ></i>
+      <div class="mobile-container">
+        <div class="row justify-content-center mt-3">
+          <div class="col-md-12">
+            <div class="card custom-card overflow-auto">
+              <div class="card-header d-flex justify-content-space-between align-items-center">
+                  <h3>Giveables</h3>
+                <a className="add-but">
+                  <i
+                    class="fas fa-plus"
+                    
+                    onClick={() => navigate("/giveableform")}
+                  ></i>
+                </a>
+               
               </div>
               {give && (
                 <div class="card-body">
@@ -76,7 +79,7 @@ const Giveableslist = () => {
                         <tr key={idx}>
                           <th scope="row">{idx + 1}</th>
                           <td>{x.give}</td>
-                          <td>{x.name}</td>
+                          <td><b>{x.name}</b></td>
                         </tr>
                       ))}
                     </tbody>

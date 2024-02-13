@@ -40,12 +40,12 @@ const MyGives = () => {
         <div>
             <Navbar />
 
-            <div class="container">
+            <div class="mobile-container">
                 <div class="row justify-content-center mt-5">
-                    <div class="col-md-6">
-                        <div class="card custom-card">
+                    <div class="col-md-12">
+                        <div class="card custom-card overflow-auto">
                             <div class="card-header ">
-                                <b>My Gives</b>
+                                <h3>My Gives</h3>
 
                             </div>
                             {give && (
