@@ -20,7 +20,7 @@ const Giveableslist = () => {
           .filter((x) => x.give)
           .map((x) => ({
             give: x.give,
-            user_name: x.userdetails[0].user_name,
+            name: x.userdetails[0].name,
           }));
         setGive(newGive);
         console.log("give", give);
@@ -76,7 +76,7 @@ const Giveableslist = () => {
                         <tr key={idx}>
                           <th scope="row">{idx + 1}</th>
                           <td>{x.give}</td>
-                          <td>{x.user_name}</td>
+                          <td>{x.name}</td>
                         </tr>
                       ))}
                     </tbody>

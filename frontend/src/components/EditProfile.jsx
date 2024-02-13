@@ -41,7 +41,7 @@ const EditProfile = () => {
     e.preventDefault();
     e.target.reset();
     console.log("input", input);
-    console.log("keys", Object.keys(input));
+    
     if (!Object.keys(input).length) {
       toast.error("You have not made any change");
     } else {
@@ -82,6 +82,7 @@ const EditProfile = () => {
           } else if (err.response.status == 422) {
             let arr = err.response.data.validationError;
             let errorData = {};
+            console.log('arr',arr);
             arr.map((x) => {
               if (errorData[x.path] == undefined) {
                 errorData[x.path] = x.msg;

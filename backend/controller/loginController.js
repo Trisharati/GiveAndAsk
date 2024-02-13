@@ -48,8 +48,9 @@ async updateInfo(req,res){
     console.log('body',req.body);
     // const errors = validationResult(req);
     let error = req.uploadErr;
-    console.log('error',error);
+    
     if(error){
+        console.log('error',error);
         res.status(422).json({validationError:error})
     }else{
         let userDetails = await userModel.findOne({user_name:req.user_name})

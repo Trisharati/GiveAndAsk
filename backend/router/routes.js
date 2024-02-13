@@ -47,9 +47,9 @@ const upload = multer({
 });
 // router.use(formdataParser);
 
-router.post("/login", loginValidation, loginController.login);
+router.post("/login", formdataParser,loginValidation, loginController.login);
 router.use(middleware);
-router.post("/verifytoken", loginController.verifyToken);
+router.post("/verifytoken",formdataParser, loginController.verifyToken);
 router.get("/getmyinfo", loginController.getMyInfo);
 router.post("/updateprofile", 
 (req,res,next)=>{
@@ -58,13 +58,14 @@ router.post("/updateprofile",
       req.uploadErr = err.message;
       console.log("req.uploadErr2", req.uploadErr);
     }
+   
     next()
   })
 }
 , loginController.updateInfo);
 
-router.post("/creategiveable", giveValidation, giveaskController.createNeed);
-router.post("/createask", askValidation, giveaskController.createNeed);
+router.post("/creategiveable", formdataParser,giveValidation, giveaskController.createNeed);
+router.post("/createask", formdataParser,askValidation, giveaskController.createNeed);
 
 router.get('/my-give/:userId',giveaskController.myGive)
 router.get('/my-ask/:userId',giveaskController.myAsk)

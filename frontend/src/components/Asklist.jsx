@@ -20,7 +20,7 @@ const Asklist = () => {
                     .filter(x => x.ask) // Filter out objects where 'x.give' is not present or falsy
                     .map((x) => ({
                         ask: x.ask,
-                        user_name: x.userdetails[0].user_name
+                        name: x.userdetails[0].name
                     }));
                 setAsk(newAsk);
                 console.log('ask', ask);
@@ -72,7 +72,7 @@ const Asklist = () => {
                                                 <tr key={idx}>
                                                     <th scope="row">{idx + 1}</th>
                                                     <td>{x.ask}</td>
-                                                    <td>{x.user_name}</td>
+                                                    <td>{x.name}</td>
                                                 </tr>
                                             ))}
 
