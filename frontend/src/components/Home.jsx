@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 import { useNavigate } from 'react-router-dom'
+import Footer from './Footer'
 const Home = () => {
 
     const navigate = useNavigate()
@@ -49,7 +50,7 @@ const Home = () => {
                 </div>
                 </div>
                 </div>
-
+<Footer/>
     </div>
   )
 }
