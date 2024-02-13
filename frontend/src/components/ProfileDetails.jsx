@@ -57,8 +57,8 @@ const ProfileDetails = () => {
 
                   </a>
               <div className="text-center">
-                {/* <img src="/public/vite.svg" width={100} className="rounded-circle" /> */}
-                <img src={`http://localhost:2000/${info.image}`} width={100} className="rounded-circle" />
+                <img src="/vite.svg" width={100} className="rounded-circle" />
+                {/* <img src={`http://localhost:2000/${info.image}`} width={100} className="rounded-circle" /> */}
                 <h3 className="mt-2">{info.name}</h3>
                 <span className="mt-1 clearfix">{info.user_name}</span>
                 <span className="mt-1 clearfix">{info.mail}</span>
