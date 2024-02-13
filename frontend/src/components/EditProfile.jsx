@@ -102,9 +102,10 @@ const EditProfile = () => {
     <div>
       <Navbar />
       {info && (
-        <div class="container">
-          <div class="row justify-content-center mt-5">
-            <div class="col-md-6">
+        <div class="mobile-container">
+          <div class="row justify-content-center mt-2 pb-5">
+            <div class="col-md-12">
+              <div className="custom-card overflow-auto">
               <form onSubmit={handleSubmit}>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Username</label>
@@ -201,6 +202,8 @@ const EditProfile = () => {
                   Submit
                 </button>
               </form>
+              </div>
+              
             </div>
           </div>
         </div>
