@@ -63,9 +63,9 @@ const Matches = () => {
     <div>
       <Navbar />
       {match.length ? (
-        <div class="container">
+        <div class="mobile-container">
           <div class="row justify-content-center mt-5">
-            <div class="col-md-8">
+            <div class="col-md-12">
               {match.map((x, index) => (
                 <div  key={index}>
                   <div class="card custom-card">

@@ -33,7 +33,7 @@ body {
 }
 .logo-img{
   height:80px;
-  margin-bottom: 20px;
+  
 }
   h2 {
     margin-top: 0;
@@ -108,6 +108,7 @@ body {
     text-align: center;
     color: #fff;
     border-radius: 0.25rem;
+    min-width: 115px;
   }
   .link-butt:hover{
     color: #f48637;
@@ -122,4 +123,68 @@ body {
   .navbar-light .navbar-nav .nav-link {
     color: rgb(244 134 55) !important;
     font-weight: 600;
+}
+/*****************************************/
+.home-page-buts{
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.home-link{
+  width:200px;
+  height: 150px;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 0.25rem;
+  margin-bottom: 20px;
+  align-items: center;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  font-weight: 600;
+  padding: 25px;
+  font-size: 30px;
+}
+.home-link:hover{
+  text-decoration: none;
+  color: #fff;
+}
+.home-page-buts .home-link:nth-child(1) {
+ background-color: #f48637;
+}
+.home-page-buts .home-link:nth-child(2) {
+  background-color: #ffb785;
+ }
+ .home-page-buts .home-link:nth-child(4) {
+  background-color: #f48637;
+ }
+ .home-page-buts .home-link:nth-child(3) {
+   background-color: #ffb785;
+  }
+  .custom-card{
+    max-height: 75vh;
+  }
+  .add-but,
+  .add-but:hover{
+    color: #f48637;
+    text-decoration: none;
+    font-size:25px;
+  }
+  .custom-card .thead-dark th {
+    color: #fff;
+    background-color: #f48637 !important;
+    border-color: #ffb27b!important;
+}
+.custom-card tr:nth-child(odd) td,
+.custom-card tr:nth-child(odd) th{
+  background-color: #faebd7;
+
+}
+.table td, .table th {
+  vertical-align: middle !important;
+}
+.justify-content-space-between{
+  justify-content: space-between !important;
+}
+.custom-card{
+  padding-bottom: 25px;
 }
