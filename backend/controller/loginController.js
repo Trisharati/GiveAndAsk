@@ -11,7 +11,7 @@ class Login{
         if(errors.array().length){
             res.status(422).json({validationError:errors.array()})
         }else{
-            let isUserExist = await userModel.findOne({user_name:req.body.user_name})
+            let isUserExist = await userModel.findOne({phone:req.body.phone})
             
             if(isUserExist){
                 if(bcrypt.compareSync(req.body.password,isUserExist.password)){
@@ -19,9 +19,10 @@ class Login{
                         {
                             expiresIn:'30m'
                         })
-                        req.userToken = token
+                        // req.userToken = token
                     res.status(200).json({status:1,token:token,
-                        user_name:isUserExist.user_name,message:'Login successful'})
+                        name:isUserExist.name,
+                        message:'Login successful'})
                 }else{
                     res.status(401).json({status:0,message:'Credentials does not match'})
                 }
@@ -35,7 +36,7 @@ async verifyToken(req,res){
     res.status(200).json({message:'Verified access',status:1})
 }
     async getMyInfo(req,res){
-        let userDetails = await userModel.findOne({user_name:req.user_name})
+        let userDetails = await userModel.findOne({phone:req.phone})
         if(userDetails){
             console.log('userdetails',userDetails);
             res.status(200).json({MyInfo:userDetails})

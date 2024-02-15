@@ -31,7 +31,7 @@ const Navbar = () => {
       <li className="nav-item dropdown">       
        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {/* <p></p> */}
-        {localStorage.getItem('user_name')} <i class="fas fa-user"></i>
+        {localStorage.getItem('name')} <i class="fas fa-user"></i>
   {/* <i class="fas fa-caret-down ml-1"></i> */}
           </a>
        

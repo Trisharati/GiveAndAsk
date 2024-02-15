@@ -97,6 +97,7 @@ class GiveAsk {
         let mygives = await MyGiveAsk.filter((x)=>{
             return x.give
         })
+        console.log('mygives',mygives);
         res.status(200).json({MyGives:mygives})
     }
 
@@ -112,7 +113,7 @@ class GiveAsk {
 
     async matches(req, res) {
 
-        let user = await userModel.findOne({ user_name: req.user_name })
+        let user = await userModel.findOne({ phone: req.phone })
         let mygiveask = await giveaskModel.find({ user_id: user._id })
         // console.log('giveask',giveask);
         let myAsk = mygiveask

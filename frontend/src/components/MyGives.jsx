@@ -10,9 +10,10 @@ const MyGives = () => {
     const [give, setGive] = useState([]);
     const { userId } = useParams()
     const navigate = useNavigate();
-    const token = localStorage.getItem("userToken");
+    const user_name = localStorage.getItem("user_name");
     let arr = [];
     const fetchMyGives = () => {
+        
         OpenApi.get(`/my-give/${userId}`)
             .then((res) => {
                 setGive(res.data.MyGives)

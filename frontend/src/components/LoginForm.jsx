@@ -8,7 +8,7 @@ import OpenApi from "./OpenApi";
 const LoginForm = () => {
   const [error, setError] = useState({});
   const [input, setInput] = useState({
-    user_name: "",
+    phone: "",
     password: "",
   });
   const navigate = useNavigate();
@@ -23,14 +23,14 @@ const LoginForm = () => {
     console.log("input", input);
 
     const formData = new FormData();
-    formData.append("user_name", input.user_name);
+    formData.append("phone", input.phone);
     formData.append("password", input.password);
 
     OpenApi
       .post("/login", formData)
       .then((res) => {
         setInput({
-          user_name: "",
+          phone: "",
           password: "",
         });
         setError({});
@@ -44,7 +44,8 @@ const LoginForm = () => {
           navigate("/profiledetails");
           toast.success(res.data.message);
           localStorage.setItem("userToken", res.data.token);
-          localStorage.setItem("user_name", res.data.user_name);
+          localStorage.setItem("name", res.data.name);
+          
           const tokenExpTime = Date.now() + 30 * 60 * 1000;
           localStorage.setItem("tokenExpTime", tokenExpTime);
           const getExpTime = localStorage.getItem("tokenExpTime");
@@ -90,14 +91,14 @@ const LoginForm = () => {
       <h2>Login</h2>
       <form id="login-form" onSubmit={handleSubmit}>
         <div class="form-group">
-          <label for="username">Username</label>
+          <label for="username">Phone</label>
           <input
             className="form-control"
-            type="text"
-            id="username"
-            name="user_name"
+            
+            id="phone"
+            name="phone"
             onChange={handleChange}
-            autoComplete="username" 
+            autoComplete="phone" 
           />
           <span style={{ color: "red" }}>{error.user_name}</span>
         </div>
@@ -109,7 +110,7 @@ const LoginForm = () => {
             id="password"
             name="password"
             onChange={handleChange}
-            autoComplete="current-password"
+            autoComplete="password"
           />
           <span style={{ color: "red" }}>{error.password}</span>
         </div>

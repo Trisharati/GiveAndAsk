@@ -1,10 +1,10 @@
 const { body } = require("express-validator");
 
 const loginValidation = [
-  body("user_name")
+  body("phone")
     .not()
     .isEmpty()
-    .withMessage("*Please enter user name"),
+    .withMessage("*Please enter phone number"),
     // .not()
     // .matches(/[0-9]/)
     // .withMessage("*Name should be string"),
