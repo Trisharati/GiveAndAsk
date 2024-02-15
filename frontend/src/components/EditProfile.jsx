@@ -94,6 +94,9 @@ const EditProfile = () => {
               error && console.log("error", error);
             }
           }
+          else if(err.response.status == 423){
+            setError({phone:err.response.data.message})
+          }
         });
     }
   };
@@ -141,6 +144,7 @@ const EditProfile = () => {
                     defaultValue={info.phone ? info.phone : ""}
                     onChange={handleChange}
                   />
+                  <span style={{color:'red'}}>{error.phone}</span>
                 </div>
 
                 <div class="form-group">

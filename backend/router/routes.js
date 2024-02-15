@@ -51,7 +51,7 @@ router.post("/login", formdataParser,loginValidation, loginController.login);
 router.use(middleware);
 router.post("/verifytoken",formdataParser, loginController.verifyToken);
 router.get("/getmyinfo", loginController.getMyInfo);
-router.post("/updateprofile", 
+router.post("/updateprofile",
 (req,res,next)=>{
   upload.single('image')(req,res,(err)=>{
     if (err) {

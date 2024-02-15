@@ -15,20 +15,25 @@ const loginValidation = [
 
 const updateValidation = [
   body("mail")
-    // .not()
-    // .isEmpty()
-    // .withMessage("*Please enter email")
     .isEmail()
     .withMessage("*Invalid email format"),
 
-  body("address").not().isEmpty().withMessage("*Please enter address"),
+    body('phone')
+    .custom((value)=>{
+      if(/\D/.test(value)){
+        throw new Error("alphabets are not allowed")
+      }
+      console.log('value1',/\D/.test(value));
+    })
 
-  body("category").not().isEmpty().withMessage("*Please enter category"),
+  // body("address").not().isEmpty().withMessage("*Please enter address"),
 
-  body("business_name")
-    .not()
-    .isEmpty()
-    .withMessage("*Please enter business_name"),
+  // body("category").not().isEmpty().withMessage("*Please enter category"),
+
+  // body("business_name")
+  //   .not()
+  //   .isEmpty()
+  //   .withMessage("*Please enter business_name"),
 
   // body('password').not().isEmpty().withMessage('*Please enter password')
   // .isLength({min:6}).withMessage('*Password length should be minimum 6')
@@ -46,10 +51,18 @@ const giveValidation = [
       }
       // Indicates that the validation succeeded
       return true;
-    }),
+    })
 ];
 const askValidation = [
-  body("ask").not().isEmpty().withMessage("*Field cannot be blank"),
+  body("ask").not().isEmpty().withMessage("*Field cannot be blank")
+  .custom((value) => {
+    // Check if the value contains only numeric characters
+    if (/^\d+$/.test(value)) {
+      throw new Error("Only numbers are not allowed");
+    }
+    // Indicates that the validation succeeded
+    return true;
+  }),
 ];
 
 module.exports = {
