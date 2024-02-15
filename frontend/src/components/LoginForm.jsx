@@ -100,7 +100,7 @@ const LoginForm = () => {
             onChange={handleChange}
             autoComplete="phone" 
           />
-          <span style={{ color: "red" }}>{error.user_name}</span>
+          <span style={{ color: "white" }}>{error.user_name}</span>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -112,7 +112,7 @@ const LoginForm = () => {
             onChange={handleChange}
             autoComplete="password"
           />
-          <span style={{ color: "red" }}>{error.password}</span>
+          <span style={{ color: "white" }}>{error.password}</span>
         </div>
         <button type="submit">Login</button>
       </form>
