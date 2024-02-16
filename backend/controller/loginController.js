@@ -26,6 +26,7 @@ class Login {
                     // req.userToken = token
                     res.status(200).json({
                         status: 1, token: token,
+                        userId:isUserExist._id,
                         name: isUserExist.name,
                         message: 'Login successful'
                     })

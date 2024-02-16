@@ -45,7 +45,7 @@ const LoginForm = () => {
           toast.success(res.data.message);
           localStorage.setItem("userToken", res.data.token);
           localStorage.setItem("name", res.data.name);
-          
+          localStorage.setItem('userId',res.data.userId)
           const tokenExpTime = Date.now() + 30 * 60 * 1000;
           localStorage.setItem("tokenExpTime", tokenExpTime);
           const getExpTime = localStorage.getItem("tokenExpTime");

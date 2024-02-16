@@ -1,23 +1,21 @@
-"use client"
-import axios from 'axios';
-
+"use client";
+import axios from "axios";
 
 const setHeaders = async () => {
-   let token = await localStorage.getItem("userToken")
-    return {
-        authorization: token
-    };
+  let token = await localStorage.getItem("userToken");
+  return {
+    authorization: token,
+  };
 };
 
-
 const OpenApi = axios.create({
-    baseURL: 'https://give-and-ask-application.onrender.com',
-    // baseURL: 'http://localhost:2000',
+  // baseURL: 'https://give-and-ask-application.onrender.com',
+  baseURL: "http://localhost:2000",
 });
 
 // Interceptor to set headers before request is sent
 OpenApi.interceptors.request.use(async (config) => {
-    config.headers = await setHeaders();
-    return config;
+  config.headers = await setHeaders();
+  return config;
 });
 export default OpenApi;

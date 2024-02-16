@@ -13,6 +13,8 @@ import Matches from "./components/Matches";
 import MyGives from "./components/MyGives";
 import MyAsks from "./components/MyAsks";
 import Home from "./components/Home";
+import EditMyGive from "./components/EditMyGive";
+import EditMyAsk from "./components/EditMyAsk";
 
 function App() {
   return (
@@ -45,6 +47,10 @@ function App() {
             path="/giveableform"
             element={<PrivateRoute Component={Giveableform} />}
           />
+             <Route
+            path="/editmygive/:giveId"
+            element={<PrivateRoute Component={EditMyGive} />}
+          />
           <Route
             path="/asklist"
             element={<PrivateRoute Component={Asklist} />}
@@ -52,6 +58,10 @@ function App() {
             <Route
             path="/my-asks/:userId"
             element={<PrivateRoute Component={MyAsks} />}
+          />
+                 <Route
+            path="/editmyask/:askId"
+            element={<PrivateRoute Component={EditMyAsk} />}
           />
           <Route
             path="/askform"

@@ -68,8 +68,15 @@ router.post("/creategiveable", formdataParser,giveValidation, giveaskController.
 router.post("/createask", formdataParser,askValidation, giveaskController.createNeed);
 
 router.get('/my-give/:userId',giveaskController.myGive)
+router.get('/fetchsinglegive/:userId/:giveId',giveaskController.fetchSingleGive)
+router.post('/update-my-give/:userId/:giveId',formdataParser,giveaskController.updateMyGive)
+router.get('/delete-my-give/:userId/:giveId',giveaskController.deleteMyGive)
+
 router.get('/my-ask/:userId',giveaskController.myAsk)
+router.get('/fetchsingleask/:userId/:askId',giveaskController.fetchSingleAsk)
+router.post('/update-my-ask/:userId/:askId',formdataParser,giveaskController.updateMyAsk)
 router.get("/fetchgiveask", giveaskController.fetchGiveAsk);
+router.get('/delete-my-ask/:userId/:askId',giveaskController.deleteMyAsk)
 
 router.get("/matches", giveaskController.matches);
 
