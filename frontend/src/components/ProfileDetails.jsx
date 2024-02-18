@@ -16,7 +16,9 @@ const ProfileDetails = () => {
       .then((res) => {
         console.log("res", res);
         setInfo(res.data.MyInfo);
-        { info && console.log('info', info); }
+        {
+          info && console.log("info", info);
+        }
       })
       .catch((err) => {
         console.log("Error in displaying info", err);
@@ -25,11 +27,11 @@ const ProfileDetails = () => {
           navigate("/");
         } else if (err.response.status == 400) {
           toast.error(err.response.data.message);
-          localStorage.clear()
+          localStorage.clear();
           navigate("/");
         } else if (err.response.status == 403) {
           toast.error(err.response.data.message);
-          localStorage.clear()
+          localStorage.clear();
           navigate("/");
         }
       });
@@ -39,14 +41,11 @@ const ProfileDetails = () => {
     fetchDetails();
   }, []);
 
-
-
   return (
     <div>
       <Navbar />
       {info && (
         <>
-
           <div className="mobile-container d-flex justify-content-center ">
             <div className="overflow-auto pb-5 custom-card">
               <div className="card p-3 py-4">
@@ -56,11 +55,16 @@ const ProfileDetails = () => {
                   onClick={() => navigate("/editprofile")}
                 >
                   <i className="far fa-edit"></i>
-
                 </a>
                 <div className="text-center">
-                  <img src="/vite.svg" width={100} className="rounded-circle" />
-                  {/* <img src={`http://localhost:2000/${info.image}`} width={100} className="rounded-circle" /> */}
+                  {/* <img src="/vite.svg" width={100} className="rounded-circle" /> */}
+                  <img
+                    src={`${OpenApi.defaults.baseURL}/${info.image}`}
+                    width={100}
+                    height={100}
+                    className="rounded-circle"
+                  />
+
                   <h3 className="mt-2">{info.name}</h3>
                   <span className="mt-1 clearfix">{info.user_name}</span>
                   <span className="mt-1 clearfix">{info.mail}</span>
@@ -89,7 +93,8 @@ const ProfileDetails = () => {
                       onClick={() => navigate(`/my-gives/${info._id}`)}
                     >
                       My Give
-                    </a>&nbsp;&nbsp;
+                    </a>
+                    &nbsp;&nbsp;
                     <a
                       href="#"
                       class="link-butt"
@@ -106,13 +111,11 @@ const ProfileDetails = () => {
                       My Matches
                     </a>
                   </div>
-
                 </div>
               </div>
             </div>
-
-          </div></>
-
+          </div>
+        </>
       )}
       <Footer />
     </div>

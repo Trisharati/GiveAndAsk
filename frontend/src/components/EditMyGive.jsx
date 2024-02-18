@@ -5,7 +5,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import OpenApi from "./OpenApi";
 import Footer from "./Footer";
 
-
 const EditMyGive = () => {
   const [error, setError] = useState({});
   const [input, setInput] = useState({});
@@ -13,6 +12,28 @@ const EditMyGive = () => {
   const navigate = useNavigate();
   const { giveId } = useParams();
   const userId = localStorage.getItem("userId");
+
+  const fetchSingleGive = () => {
+    OpenApi.get(`/fetchsinglegive/${userId}/${giveId}`)
+      .then((res) => {
+        setGive(res.data.editGive);
+      })
+      .catch((err) => {
+        console.log("error", err);
+        if (err.response.status == 500) {
+          toast.error(err.response.data.message);
+        } else if (err.response.status == 400) {
+          localStorage.clear();
+          navigate("/");
+          toast.error(err.response.data.message);
+        } else if (err.response.status == 403) {
+          toast.error(err.response.data.message);
+          localStorage.clear();
+          navigate("/");
+        }
+      });
+  };
+
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -26,11 +47,10 @@ const EditMyGive = () => {
       toast.error("You have not made any change");
     } else {
       const formData = new FormData();
-      formData.append("give", input.give?input.give:give.give);
+      formData.append("give", input.give ? input.give : give.give);
 
       OpenApi.post(`/update-my-give/${userId}/${giveId}`, formData)
         .then((res) => {
-          
           console.log("res", res);
           if (res.data.status == 1) {
             toast.success(res.data.message);
@@ -38,9 +58,8 @@ const EditMyGive = () => {
           }
         })
         .catch((err) => {
-          
           console.log("err", err);
-        
+
           if (err.response.status == 500) {
             toast.danger(err.response.data.message);
           } else if (err.response.status == 400) {
@@ -54,16 +73,6 @@ const EditMyGive = () => {
           }
         });
     }
-  };
-
-  const fetchSingleGive = () => {
-    OpenApi.get(`/fetchsinglegive/${userId}/${giveId}`)
-      .then((res) => {
-        setGive(res.data.editGive);
-      })
-      .catch((err) => {
-        console.log("error", err);
-      });
   };
 
   useEffect(() => {

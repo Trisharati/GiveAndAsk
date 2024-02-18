@@ -62,7 +62,7 @@ router.post("/updateprofile",
     next()
   })
 }
-, loginController.updateInfo);
+,updateValidation, loginController.updateInfo);
 
 router.post("/creategiveable", formdataParser,giveValidation, giveaskController.createNeed);
 router.post("/createask", formdataParser,askValidation, giveaskController.createNeed);

@@ -1,30 +1,25 @@
 const { body } = require("express-validator");
 
 const loginValidation = [
-  body("phone")
-    .not()
-    .isEmpty()
-    .withMessage("*Please enter phone number"),
-    // .not()
-    // .matches(/[0-9]/)
-    // .withMessage("*Name should be string"),
+  body("phone").not().isEmpty().withMessage("*Please enter phone number"),
+  // .not()
+  // .matches(/[0-9]/)
+  // .withMessage("*Name should be string"),
 
   body("password").not().isEmpty().withMessage("*Please enter password"),
   // .isLength({min:6}).withMessage('*Password length should be minimum 6')
 ];
 
 const updateValidation = [
-  body("mail")
-    .isEmail()
-    .withMessage("*Invalid email format"),
+  body("mail").isEmail().withMessage("*Invalid email format"),
 
-    body('phone')
-    .custom((value)=>{
-      if(/\D/.test(value)){
-        throw new Error("alphabets are not allowed")
-      }
-      console.log('value1',/\D/.test(value));
-    })
+  body("phone").custom((value) => {
+    console.log("val", value);
+    if (/\D/.test(value)) {
+      throw new Error("Only numbers are allowed");
+    }
+    return true;
+  }),
 
   // body("address").not().isEmpty().withMessage("*Please enter address"),
 
@@ -51,18 +46,21 @@ const giveValidation = [
       }
       // Indicates that the validation succeeded
       return true;
-    })
+    }),
 ];
 const askValidation = [
-  body("ask").not().isEmpty().withMessage("*Field cannot be blank")
-  .custom((value) => {
-    // Check if the value contains only numeric characters
-    if (/^\d+$/.test(value)) {
-      throw new Error("Only numbers are not allowed");
-    }
-    // Indicates that the validation succeeded
-    return true;
-  }),
+  body("ask")
+    .not()
+    .isEmpty()
+    .withMessage("*Field cannot be blank")
+    .custom((value) => {
+      // Check if the value contains only numeric characters
+      if (/^\d+$/.test(value)) {
+        throw new Error("Only numbers are not allowed");
+      }
+      // Indicates that the validation succeeded
+      return true;
+    }),
 ];
 
 module.exports = {

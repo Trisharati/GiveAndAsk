@@ -20,6 +20,17 @@ const EditProfile = () => {
       })
       .catch((err) => {
         console.log("Error in displaying info", err);
+        if (err.response.status == 500) {
+          toast.error(err.response.data.message);
+        } else if (err.response.status == 400) {
+          localStorage.clear();
+          navigate("/");
+          toast.error(err.response.data.message);
+        } else if (err.response.status == 403) {
+          toast.error(err.response.data.message);
+          localStorage.clear();
+          navigate("/");
+        }
       });
   };
 
@@ -60,8 +71,7 @@ const EditProfile = () => {
       }
       formData.append("password", input.password ? input.password : "");
       formData.append("image", input.image);
-      OpenApi
-        .post("/updateprofile", formData)
+      OpenApi.post("/updateprofile", formData)
         .then((res) => {
           if (res.data.status == 1) {
             toast.success(res.data.message);
@@ -80,8 +90,12 @@ const EditProfile = () => {
             localStorage.clear();
             navigate("/");
           } else if (err.response.status == 422) {
-            // let arr = err.response.data.validationError;
-            setError({image:err.response.data.validationError})
+            console.log("error valid", err);
+            let arr = err.response.data.validationError;
+            arr.map((x) => {
+              setError((prev)=>({...prev, [x.path]: x.msg }));
+            });
+            // setError({image:err.response.data.validationError})
             // let errorData = {};
             // console.log('arr', arr);
             // arr.map((x) => {
@@ -93,9 +107,8 @@ const EditProfile = () => {
             {
               error && console.log("error", error);
             }
-          }
-          else if(err.response.status == 423){
-            setError({phone:err.response.data.message})
+          } else if (err.response.status == 423) {
+            setError({ phone: err.response.data.message });
           }
         });
     }
@@ -109,105 +122,105 @@ const EditProfile = () => {
           <div class="row justify-content-center mt-2 pb-5">
             <div class="col-md-12">
               <div className="custom-card overflow-auto">
-              <form onSubmit={handleSubmit}>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Username</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    defaultValue={info.user_name}
-                    disabled
-                  />
-                </div>
+                <form onSubmit={handleSubmit}>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Username</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      defaultValue={info.user_name}
+                      disabled
+                    />
+                  </div>
 
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email ID</label>
-                  <input
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    name="mail"
-                    defaultValue={info.mail ? info.mail : ""}
-                    onChange={handleChange}
-                  />
-                </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email ID</label>
+                    <input
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      name="mail"
+                      defaultValue={info.mail ? info.mail : ""}
+                      onChange={handleChange}
+                    />
+                    <span style={{ color: "red" }}>{error && error.mail}</span>
+                  </div>
 
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Contact Number</label>
-                  <input
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    name="phone"
-                    defaultValue={info.phone ? info.phone : ""}
-                    onChange={handleChange}
-                  />
-                  <span style={{color:'red'}}>{error.phone}</span>
-                </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Contact Number</label>
+                    <input
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      name="phone"
+                      defaultValue={info.phone ? info.phone : ""}
+                      onChange={handleChange}
+                    />
+                    <span style={{ color: "red" }}>{error && error.phone}</span>
+                  </div>
 
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Business Name</label>
-                  <input
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    name="business_name"
-                    defaultValue={info.business_name}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Category</label>
-                  <input
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    name="category"
-                    defaultValue={info.category}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Address</label>
-                  <input
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    name="address"
-                    defaultValue={info.address}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="exampleInputPassword1"
-                    name="password"
-                    onChange={handleChange}
-                  />
-                </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Business Name</label>
+                    <input
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      name="business_name"
+                      defaultValue={info.business_name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Category</label>
+                    <input
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      name="category"
+                      defaultValue={info.category}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Address</label>
+                    <input
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      name="address"
+                      defaultValue={info.address}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="exampleInputPassword1"
+                      name="password"
+                      onChange={handleChange}
+                    />
+                  </div>
 
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Profile Picture</label>
-                  <input
-                    type="file"
-                    class="form-control"
-                    id="exampleInputPassword1"
-                    name="image"
-                    onChange={handleChange}
-                  />
-                  <span style={{ color: "red" }}>{error.image}</span>
-                </div>
-                <button type="submit" class="btn btn-primary">
-                  Submit
-                </button>
-              </form>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Profile Picture</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="exampleInputPassword1"
+                      name="image"
+                      onChange={handleChange}
+                    />
+                    <span style={{ color: "red" }}>{error.image}</span>
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    Submit
+                  </button>
+                </form>
               </div>
-              
             </div>
           </div>
         </div>

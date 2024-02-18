@@ -19,8 +19,8 @@ import EditMyAsk from "./components/EditMyAsk";
 function App() {
   return (
     <>
-      <Router >
-        <ToastContainer />
+      <ToastContainer />
+      <Router>
         <Routes>
           <Route path="/" element={<LoginForm />}></Route>
           <Route
@@ -47,7 +47,7 @@ function App() {
             path="/giveableform"
             element={<PrivateRoute Component={Giveableform} />}
           />
-             <Route
+          <Route
             path="/editmygive/:giveId"
             element={<PrivateRoute Component={EditMyGive} />}
           />
@@ -55,11 +55,11 @@ function App() {
             path="/asklist"
             element={<PrivateRoute Component={Asklist} />}
           />
-            <Route
+          <Route
             path="/my-asks/:userId"
             element={<PrivateRoute Component={MyAsks} />}
           />
-                 <Route
+          <Route
             path="/editmyask/:askId"
             element={<PrivateRoute Component={EditMyAsk} />}
           />
