@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense, lazy } from "react";
+import React, { useEffect, useState,  } from "react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -9,7 +9,7 @@ const ProfileDetails = () => {
   const navigate = useNavigate();
 
   const [info, setInfo] = useState();
-  const token = localStorage.getItem("userToken");
+  
   const fetchDetails = async () => {
     OpenApi.get("/getmyinfo")
       .then((res) => {
@@ -36,6 +36,25 @@ const ProfileDetails = () => {
       });
   };
 
+
+  
+  // const history = useHistory();
+
+  // useEffect(() => {
+  //   const unlisten = history.listen((location, action) => {
+  //     console.log('location',location);
+  //     if (action === 'POP') {
+  //       console.log('Back button pressed');
+  //       // Your code to handle the back button press
+  //     }
+  //   });
+
+  //   return () => {
+  //     unlisten();
+  //   };
+  // }, [history]);
+
+
   useEffect(() => {
     fetchDetails();
   }, []);
@@ -56,15 +75,15 @@ const ProfileDetails = () => {
                   <i className="far fa-edit"></i>
                 </a>
                 <div className="text-center">
-                  {/* <img src="/vite.svg" width={100} className="rounded-circle" /> */}
-                  {info.image ?
+                  <img src="/vite.svg" width={100} className="rounded-circle" />
+                  {/* {`${OpenApi.defaults.baseURL}/${info.image}`!== '' ?
                     <img
                       src={`${OpenApi.defaults.baseURL}/${info.image}`}
                       width={100}
                       height={100}
                       className="rounded-circle"
                     /> :
-                    <img src="/vite.svg" width={100} className="rounded-circle" />}
+                    <img src="/vite.svg" width={100} className="rounded-circle" />} */}
                   <h3 className="mt-2">{info.name}</h3>
                   <span className="mt-1 clearfix">{info.mail}</span>
                   <span className="mt-1 clearfix">{info.phone}</span>

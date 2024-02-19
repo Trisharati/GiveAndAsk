@@ -2,14 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import OpenApi from "./OpenApi";
 
-import axios from 'axios'
-
-
 
 const PrivateRoute = ({ Component }) => {
     // const {Component} = props
     const token = localStorage.getItem('userToken')
-    const getExpTime = localStorage.getItem('tokenExpTime')
+    
 
     const navigate = useNavigate()
     

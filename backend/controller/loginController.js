@@ -18,9 +18,7 @@ class Login {
           user_name: isUserExist.user_name,
         };
         if (bcrypt.compareSync(req.body.password, isUserExist.password)) {
-          const token = jwt.sign(obj, process.env.SECRET_KEY, {
-            expiresIn: "30m",
-          });
+          const token = jwt.sign(obj, process.env.SECRET_KEY);
           
           // req.userToken = token
           res.status(200).json({

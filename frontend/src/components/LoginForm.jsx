@@ -1,7 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import OpenApi from "./OpenApi";
+import { ClipLoader } from 'react-spinners';
+import { css } from '@emotion/react';
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
 
 
 const LoginForm = () => {
@@ -10,15 +19,16 @@ const LoginForm = () => {
     phone: "",
     password: "",
   });
-  const [submit,setSubmit] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation()
+
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
+    setIsLoading(true);
     e.preventDefault();
     e.target.reset();
     console.log("input", input);
@@ -30,33 +40,24 @@ const LoginForm = () => {
     OpenApi
       .post("/login", formData)
       .then((res) => {
-        console.log('location', location);
-        setSubmit(true)
-        console.log('submit',submit);
+        // console.log('location', location);       
         setInput({
           phone: "",
           password: "",
         });
         setError({});
         console.log("res", res);
-        const logout = async () => {
-          localStorage.clear();
-          toast.warning("Logged out");
-          navigate("/");
-        };
+
         if (res.data.status == 1) {
           navigate("/profiledetails");
           toast.success(res.data.message);
           localStorage.setItem("userToken", res.data.token);
           localStorage.setItem("name", res.data.name);
           localStorage.setItem('userId', res.data.userId)
-          const tokenExpTime = Date.now() + 30 * 60 * 1000;
-          localStorage.setItem("tokenExpTime", tokenExpTime);
-          const getExpTime = localStorage.getItem("tokenExpTime");
-          const currentTime = Date.now();
-          const timeRemaining = getExpTime - currentTime;
-          setTimeout(logout, timeRemaining);
         }
+      })
+      .then(() => {
+        setIsLoading(false);
       })
       .catch((err) => {
         setInput({
@@ -90,8 +91,7 @@ const LoginForm = () => {
 
   return (
     <div class="full-width text-center">
-      {submit && location.pathname !== '/profiledetails' ? 
-      <h3 style={{ color: 'green' }}>Processing...</h3> : null}
+      <ClipLoader color={'#123abc'} loading={isLoading} css={override} size={150} />
       <img src="img/evo_connect.png" className="logo-img mb-3" />
       <div class="login-container  text-left">
         <h2>Login</h2>

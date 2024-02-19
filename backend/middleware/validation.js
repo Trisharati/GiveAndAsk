@@ -17,10 +17,10 @@ const updateValidation = [
     .custom((value) => {
       console.log("val", value);
       if (/\D/.test(value)) {
-        throw new Error("Only numbers are allowed");
+        throw new Error("*Only numbers are allowed");
       }
       if (value.length < 10) {
-        throw new Error("Phone number should be 10 digits")
+        throw new Error("*Phone number should be 10 digits")
       }
       return true;
     }),

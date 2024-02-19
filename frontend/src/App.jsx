@@ -32,7 +32,7 @@ function App() {
           ></Route>
           <Route
             path="/profiledetails"
-            element={<PrivateRoute Component={LazyLoading} />}
+            element={<PrivateRoute Component={ProfileDetails} />}
           />
           <Route
             path="/editprofile"
