@@ -21,6 +21,7 @@ class Login {
           const token = jwt.sign(obj, process.env.SECRET_KEY, {
             expiresIn: "30m",
           });
+          
           // req.userToken = token
           res.status(200).json({
             status: 1,

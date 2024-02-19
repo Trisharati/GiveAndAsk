@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import OpenApi from "./OpenApi";
 
@@ -10,7 +10,9 @@ const LoginForm = () => {
     phone: "",
     password: "",
   });
+  const [submit,setSubmit] = useState(false)
   const navigate = useNavigate();
+  const location = useLocation()
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -28,6 +30,9 @@ const LoginForm = () => {
     OpenApi
       .post("/login", formData)
       .then((res) => {
+        console.log('location', location);
+        setSubmit(true)
+        console.log('submit',submit);
         setInput({
           phone: "",
           password: "",
@@ -44,7 +49,7 @@ const LoginForm = () => {
           toast.success(res.data.message);
           localStorage.setItem("userToken", res.data.token);
           localStorage.setItem("name", res.data.name);
-          localStorage.setItem('userId',res.data.userId)
+          localStorage.setItem('userId', res.data.userId)
           const tokenExpTime = Date.now() + 30 * 60 * 1000;
           localStorage.setItem("tokenExpTime", tokenExpTime);
           const getExpTime = localStorage.getItem("tokenExpTime");
@@ -85,37 +90,39 @@ const LoginForm = () => {
 
   return (
     <div class="full-width text-center">
-      <img src="img/evo_connect.png" className="logo-img mb-3"/>
-    <div class="login-container  text-left">
-      <h2>Login</h2>
-      <form id="login-form" onSubmit={handleSubmit}>
-        <div class="form-group">
-          <label for="username">Phone</label>
-          <input
-            className="form-control"
-            
-            id="phone"
-            name="phone"
-            onChange={handleChange}
-            autoComplete="phone" 
-          />
-          <span style={{ color: "white" }}>{error.user_name}</span>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input 
-            className="form-control"
-            type="password"
-            id="password"
-            name="password"
-            onChange={handleChange}
-            autoComplete="password"
-          />
-          <span style={{ color: "white" }}>{error.password}</span>
-        </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
+      {submit && location.pathname !== '/profiledetails' ? 
+      <h3 style={{ color: 'green' }}>Processing...</h3> : null}
+      <img src="img/evo_connect.png" className="logo-img mb-3" />
+      <div class="login-container  text-left">
+        <h2>Login</h2>
+        <form id="login-form" onSubmit={handleSubmit}>
+          <div class="form-group">
+            <label for="username">Phone</label>
+            <input
+              className="form-control"
+
+              id="phone"
+              name="phone"
+              onChange={handleChange}
+              autoComplete="phone"
+            />
+            <span style={{ color: "white" }}>{error.user_name}</span>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              className="form-control"
+              type="password"
+              id="password"
+              name="password"
+              onChange={handleChange}
+              autoComplete="password"
+            />
+            <span style={{ color: "white" }}>{error.password}</span>
+          </div>
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </div>
   );
 };

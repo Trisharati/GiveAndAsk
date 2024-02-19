@@ -42,10 +42,7 @@ const ProfileDetails = () => {
 
   return (
     <div>
-      <Suspense fallback=
-        {<div>Processing, please wait...</div>}>
-
-<Navbar />
+      <Navbar />
       {info && (
         <>
           <div className="mobile-container d-flex justify-content-center ">
@@ -60,14 +57,14 @@ const ProfileDetails = () => {
                 </a>
                 <div className="text-center">
                   {/* <img src="/vite.svg" width={100} className="rounded-circle" /> */}
-                  {info.image? 
-                  <img
-                    src={`${OpenApi.defaults.baseURL}/${info.image}`}
-                    width={100}
-                    height={100}
-                    className="rounded-circle"
-                  />:
-<img src="/vite.svg" width={100} className="rounded-circle" />}
+                  {info.image ?
+                    <img
+                      src={`${OpenApi.defaults.baseURL}/${info.image}`}
+                      width={100}
+                      height={100}
+                      className="rounded-circle"
+                    /> :
+                    <img src="/vite.svg" width={100} className="rounded-circle" />}
                   <h3 className="mt-2">{info.name}</h3>
                   <span className="mt-1 clearfix">{info.mail}</span>
                   <span className="mt-1 clearfix">{info.phone}</span>
@@ -120,9 +117,6 @@ const ProfileDetails = () => {
         </>
       )}
       <Footer />
-
-      </Suspense>
-      
     </div>
   );
 };
