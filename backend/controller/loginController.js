@@ -69,7 +69,7 @@ class Login {
     if(!validationError.length){
         let userDetails = await userModel.findOne({ user_name: req.user_name });
         function updateImage() {
-          fs.unlinkSync(`../public/img/${userDetails.image}`);
+          // fs.unlinkSync(`../public/img/${userDetails.image}`);
           return req.file.filename;
         }
         let obj = {
