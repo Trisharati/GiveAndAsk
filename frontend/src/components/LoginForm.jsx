@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import OpenApi from "./OpenApi";
@@ -56,7 +55,7 @@ const LoginForm = () => {
       })
       .catch((err) => {
         setInput({
-          user_name: "",
+          phone: "",
           password: "",
         });
 
