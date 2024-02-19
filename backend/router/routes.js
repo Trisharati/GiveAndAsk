@@ -41,7 +41,7 @@ const upload = multer({
       cb(null, true);
     } else {
       cb(null, false);
-      return cb(new Error("check file type"));
+      return cb(new Error("*Only jpeg,jpg,png files are allowed"));
     }
   }
 });

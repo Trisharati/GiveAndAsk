@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense, lazy } from "react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
 import OpenApi from "./OpenApi";
 import Footer from "./Footer";
 
@@ -43,7 +42,10 @@ const ProfileDetails = () => {
 
   return (
     <div>
-      <Navbar />
+      <Suspense fallback=
+        {<div>Processing, please wait...</div>}>
+
+<Navbar />
       {info && (
         <>
           <div className="mobile-container d-flex justify-content-center ">
@@ -66,7 +68,6 @@ const ProfileDetails = () => {
                   />
 
                   <h3 className="mt-2">{info.name}</h3>
-                  <span className="mt-1 clearfix">{info.user_name}</span>
                   <span className="mt-1 clearfix">{info.mail}</span>
                   <span className="mt-1 clearfix">{info.phone}</span>
                   <div className="row mt-3 mb-3  align-items-center justify-content-center">
@@ -118,6 +119,9 @@ const ProfileDetails = () => {
         </>
       )}
       <Footer />
+
+      </Suspense>
+      
     </div>
   );
 };

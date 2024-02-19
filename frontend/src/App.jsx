@@ -1,6 +1,8 @@
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// const LoginForm = lazy(() => import("./components/LoginForm"))
 import LoginForm from "./components/LoginForm";
 import PrivateRoute from "./components/PrivateRoute";
 import ProfileDetails from "./components/ProfileDetails";
@@ -15,6 +17,7 @@ import MyAsks from "./components/MyAsks";
 import Home from "./components/Home";
 import EditMyGive from "./components/EditMyGive";
 import EditMyAsk from "./components/EditMyAsk";
+import LazyLoading from "./components/LazyLoading";
 
 function App() {
   return (
@@ -29,7 +32,7 @@ function App() {
           ></Route>
           <Route
             path="/profiledetails"
-            element={<PrivateRoute Component={ProfileDetails} />}
+            element={<PrivateRoute Component={LazyLoading} />}
           />
           <Route
             path="/editprofile"

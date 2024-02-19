@@ -13,23 +13,25 @@ const loginValidation = [
 const updateValidation = [
   body("mail").isEmail().withMessage("*Invalid email format"),
 
-  body("phone").custom((value) => {
-    console.log("val", value);
-    if (/\D/.test(value)) {
-      throw new Error("Only numbers are allowed");
-    }
-    return true;
-  }),
+  body("phone")
+    .custom((value) => {
+      console.log("val", value);
+      if (/\D/.test(value)) {
+        throw new Error("Only numbers are allowed");
+      }
+      if (value.length < 10) {
+        throw new Error("Phone number should be 10 digits")
+      }
+      return true;
+    }),
+  body("business_name")
+    .isLength({ min: 5 })
+    .withMessage("*Business name should be miminum 5 characters"),
 
-  // body("address").not().isEmpty().withMessage("*Please enter address"),
+  body("category").isLength({ min: 5 }).withMessage("*Category should be miminum 5 characters"),
+  body("address").isLength({ min: 5 }).withMessage("*Address should be miminum 5 characters")
 
-  // body("category").not().isEmpty().withMessage("*Please enter category"),
-
-  // body("business_name")
-  //   .not()
-  //   .isEmpty()
-  //   .withMessage("*Please enter business_name"),
-
+  
   // body('password').not().isEmpty().withMessage('*Please enter password')
   // .isLength({min:6}).withMessage('*Password length should be minimum 6')
 ];

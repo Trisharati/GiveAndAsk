@@ -124,13 +124,13 @@ const EditProfile = () => {
               <div className="custom-card overflow-auto">
                 <form onSubmit={handleSubmit}>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Username</label>
+                    <label for="exampleInputEmail1">Name</label>
                     <input
                       type="email"
                       class="form-control"
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
-                      defaultValue={info.user_name}
+                      defaultValue={info.name}
                       disabled
                     />
                   </div>
@@ -171,6 +171,7 @@ const EditProfile = () => {
                       defaultValue={info.business_name}
                       onChange={handleChange}
                     />
+                    <span style={{ color: "red" }}>{error && error.business_name}</span>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Category</label>
@@ -182,6 +183,7 @@ const EditProfile = () => {
                       defaultValue={info.category}
                       onChange={handleChange}
                     />
+                    <span style={{ color: "red" }}>{error && error.category}</span>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Address</label>
@@ -193,6 +195,7 @@ const EditProfile = () => {
                       defaultValue={info.address}
                       onChange={handleChange}
                     />
+                    <span style={{ color: "red" }}>{error && error.address}</span>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>

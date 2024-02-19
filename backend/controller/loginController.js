@@ -59,9 +59,14 @@ class Login {
     // console.log("req.file", req.file);
     const errors = validationResult(req);
     let ImageError = req.uploadErr;
-    console.log("error", errors);
+    let validationError = errors.array()
+    if(ImageError){
+      validationError.push({path:'image',msg:ImageError})
+    }
     
-    if(errors.isEmpty()){
+    console.log("validationError", validationError);
+    
+    if(!validationError.length){
         let userDetails = await userModel.findOne({ user_name: req.user_name });
         function updateImage() {
           fs.unlinkSync(`./public/img/${userDetails.image}`);
@@ -91,10 +96,10 @@ class Login {
           });
     }
     else{
-        if(ImageError){
-            errors.array().push(ImageError)
-        }
-        res.status(422).json({ validationError: errors.array() });
+        // if(ImageError){
+        //     errors.array().push(ImageError)
+        // }
+        res.status(422).json({ validationError: validationError });
     }
   }
 }
