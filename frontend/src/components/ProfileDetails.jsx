@@ -60,7 +60,7 @@ const ProfileDetails = () => {
                 </a>
                 <div className="text-center">
                   {/* <img src="/vite.svg" width={100} className="rounded-circle" /> */}
-                  {`${OpenApi.defaults.baseURL}/${info.image}`? 
+                  {info.image? 
                   <img
                     src={`${OpenApi.defaults.baseURL}/${info.image}`}
                     width={100}
