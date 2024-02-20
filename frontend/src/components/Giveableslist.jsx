@@ -4,14 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import OpenApi from "./OpenApi";
 import Footer from "./Footer";
+import { ClipLoader } from 'react-spinners';
 
 const Giveableslist = () => {
   const [give, setGive] = useState([]);
-  const [input, setInput] = useState();
   const navigate = useNavigate();
-  const token = localStorage.getItem("userToken");
-  let arr = [];
+  const [isLoading, setIsLoading] = useState(false);
+
   const fetchGiveables = () => {
+    setIsLoading(true);
     OpenApi
       .get("/fetchgiveask")
       .then((res) => {
@@ -24,6 +25,9 @@ const Giveableslist = () => {
           }));
         setGive(newGive);
         console.log("give", give);
+      })
+      .then(() => {
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log("error in fetching", err);
@@ -47,6 +51,12 @@ const Giveableslist = () => {
 
   return (
     <div>
+
+      <div style={{ position: 'relative', top: '10%', left: '45%' }}>
+        {isLoading && <p style={{ fontSize: 20, color: '#AE0000' }}>Loading...</p>}
+        <ClipLoader color={'#123abc'} loading={isLoading}  size={100} />
+      </div>
+
       <Navbar />
 
       <div class="mobile-container">
@@ -54,15 +64,15 @@ const Giveableslist = () => {
           <div class="col-md-12">
             <div class="card custom-card overflow-auto">
               <div class="card-header d-flex justify-content-space-between align-items-center">
-                  <h3>Giveables</h3>
+                <h3>Giveables</h3>
                 <a className="add-but">
                   <i
                     class="fas fa-plus"
-                    
+
                     onClick={() => navigate("/giveableform")}
                   ></i>
                 </a>
-               
+
               </div>
               {give && (
                 <div class="card-body">
@@ -90,7 +100,7 @@ const Giveableslist = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

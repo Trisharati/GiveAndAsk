@@ -9,7 +9,8 @@ const ProfileDetails = () => {
   const navigate = useNavigate();
 
   const [info, setInfo] = useState();
-  
+  const [finishStatus, setfinishStatus] = useState(false);
+
   const fetchDetails = async () => {
     OpenApi.get("/getmyinfo")
       .then((res) => {
@@ -36,23 +37,26 @@ const ProfileDetails = () => {
       });
   };
 
-
   
-  // const history = useHistory();
-
-  // useEffect(() => {
-  //   const unlisten = history.listen((location, action) => {
-  //     console.log('location',location);
-  //     if (action === 'POP') {
-  //       console.log('Back button pressed');
-  //       // Your code to handle the back button press
-  //     }
-  //   });
-
-  //   return () => {
-  //     unlisten();
-  //   };
-  // }, [history]);
+const onBackButtonEvent = (e) => {
+    e.preventDefault();
+    if (!finishStatus) {
+        if (window.confirm("Do you want to go to login window ?")) {
+            setfinishStatus(true)
+            navigate("/");
+        } else {
+            window.history.pushState(null, null, window.location.pathname);
+            setfinishStatus(false)
+        }
+    }
+}
+  useEffect(() => {
+    window.history.pushState(null, null, window.location.pathname);
+    window.addEventListener('popstate', onBackButtonEvent);
+    return () => {
+      window.removeEventListener('popstate', onBackButtonEvent);  
+    };
+  });
 
 
   useEffect(() => {
@@ -75,8 +79,8 @@ const ProfileDetails = () => {
                   <i className="far fa-edit"></i>
                 </a>
                 <div className="text-center">
-                  <img src="/vite.svg" width={100} className="rounded-circle" />
-                  {/* {`${OpenApi.defaults.baseURL}/${info.image}`!== '' ?
+                  <img src="/public/img/evo_connect.png" width={100} className="rounded-circle" />
+                  {/* {`${OpenApi.defaults.imageURL}/evo_connect`!== '' ?
                     <img
                       src={`${OpenApi.defaults.baseURL}/${info.image}`}
                       width={100}
@@ -84,6 +88,7 @@ const ProfileDetails = () => {
                       className="rounded-circle"
                     /> :
                     <img src="/vite.svg" width={100} className="rounded-circle" />} */}
+                    
                   <h3 className="mt-2">{info.name}</h3>
                   <span className="mt-1 clearfix">{info.mail}</span>
                   <span className="mt-1 clearfix">{info.phone}</span>

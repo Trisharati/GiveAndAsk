@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 const Navbar = () => {
     const navigate = useNavigate();
 
+   
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light ">
@@ -38,6 +39,7 @@ const Navbar = () => {
         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <a className="dropdown-item" href="#" onClick={()=>navigate('/profiledetails')}>Profile</a>
           <div className="dropdown-divider"></div>
+          
           <a className="dropdown-item" href="#" onClick={()=>{navigate('/matches')}}>Matches</a>
             <div className="dropdown-divider"></div>
           <a className="dropdown-item" href="#" onClick={()=>{localStorage.clear();

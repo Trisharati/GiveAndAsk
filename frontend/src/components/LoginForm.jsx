@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import OpenApi from "./OpenApi";
@@ -72,8 +72,10 @@ const LoginForm = () => {
         // else if(err.response.status == 403){
         //   toast.warning(err.response.data.message)
         // }
+        setError({phone:'',password:''});
+        setIsLoading(false);
         if (err.response.status == 422) {
-          setError({});
+          
           let arr = err.response.data.validationError;
           let errorData = {};
           arr.map((x) => {
@@ -89,9 +91,17 @@ const LoginForm = () => {
       });
   };
 
+
+
+
   return (
-    <div class="full-width text-center">
-      <ClipLoader color={'#123abc'} loading={isLoading} css={override} size={150} />
+    <div>
+      <div style={{ position:'relative',top:'10%',left:'45%'}}>
+        {isLoading && <p style={{fontSize:20,color:'#AE0000'}}>Logging In...</p>}
+      <ClipLoader color={'#123abc'} loading={isLoading} css={override} size={100} />
+      </div>
+      
+      <div class="full-width text-center">
       <img src="img/evo_connect.png" className="logo-img mb-3" />
       <div class="login-container  text-left">
         <h2>Login</h2>
@@ -106,7 +116,7 @@ const LoginForm = () => {
               onChange={handleChange}
               autoComplete="phone"
             />
-            <span style={{ color: "white" }}>{error.user_name}</span>
+            <span style={{ color: "white" }}>{error.phone}</span>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
@@ -124,6 +134,8 @@ const LoginForm = () => {
         </form>
       </div>
     </div>
+    </div>
+    
   );
 };
 

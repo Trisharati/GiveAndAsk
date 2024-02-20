@@ -95,6 +95,7 @@ const EditProfile = () => {
             arr.map((x) => {
               setError((prev)=>({...prev, [x.path]: x.msg }));
             });
+            setInput({})
             // setError({image:err.response.data.validationError})
             // let errorData = {};
             // console.log('arr', arr);
@@ -104,12 +105,11 @@ const EditProfile = () => {
             //     setError((error) => ({ ...error, [x.path]: x.msg }));
             //   }
             // });
-            {
-              error && console.log("error", error);
-            }
-          } else if (err.response.status == 423) {
-            setError({ phone: err.response.data.message });
-          }
+          } 
+          
+          // else if (err.response.status == 423) {
+          //   setError({ phone: err.response.data.message });
+          // }
         });
     }
   };
@@ -208,7 +208,7 @@ const EditProfile = () => {
                     />
                   </div>
 
-                  <div class="form-group">
+                  {/* <div class="form-group">
                     <label for="exampleInputPassword1">Profile Picture</label>
                     <input
                       type="file"
@@ -218,7 +218,7 @@ const EditProfile = () => {
                       onChange={handleChange}
                     />
                     <span style={{ color: "red" }}>{error.image}</span>
-                  </div>
+                  </div> */}
                   <button type="submit" class="btn btn-primary">
                     Submit
                   </button>
