@@ -2,10 +2,7 @@ const { body } = require("express-validator");
 
 const loginValidation = [
   body("phone").not().isEmpty().withMessage("*Please enter phone number"),
-  // .not()
-  // .matches(/[0-9]/)
-  // .withMessage("*Name should be string"),
-
+  
   body("password").not().isEmpty().withMessage("*Please enter password"),
   // .isLength({min:6}).withMessage('*Password length should be minimum 6')
 ];
@@ -43,8 +40,11 @@ const giveValidation = [
     .withMessage("*Field cannot be blank")
     .custom((value) => {
       // Check if the value contains only numeric characters
-      if (/^\d+$/.test(value)) {
+      if (/\d+$/.test(value)) {
         throw new Error("Only numbers are not allowed");
+      }
+      if (value.length < 5) {
+        throw new Error("*Giveable should be minimum 5 characters")
       }
       // Indicates that the validation succeeded
       return true;
@@ -57,8 +57,11 @@ const askValidation = [
     .withMessage("*Field cannot be blank")
     .custom((value) => {
       // Check if the value contains only numeric characters
-      if (/^\d+$/.test(value)) {
+      if (/\d+$/.test(value)) {
         throw new Error("Only numbers are not allowed");
+      }
+      if (value.length < 5) {
+        throw new Error("*Ask item should be minimum 5 characters")
       }
       // Indicates that the validation succeeded
       return true;

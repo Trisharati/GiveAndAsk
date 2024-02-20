@@ -5,8 +5,10 @@ const userModel = require("../models/loginSchema");
 const { validationResult } = require("express-validator");
 const fs = require("fs");
 class Login {
+
   async login(req, res) {
     const errors = validationResult(req);
+    console.log('errors login',errors);
     if (errors.array().length) {
       res.status(422).json({ validationError: errors.array() });
     } else {
@@ -20,7 +22,6 @@ class Login {
         if (bcrypt.compareSync(req.body.password, isUserExist.password)) {
           const token = jwt.sign(obj, process.env.SECRET_KEY);
           
-          // req.userToken = token
           res.status(200).json({
             status: 1,
             token: token,
@@ -40,6 +41,8 @@ class Login {
       }
     }
   }
+
+
   async verifyToken(req, res) {
     res.status(200).json({ message: "Verified access", status: 1 });
   }
@@ -98,9 +101,6 @@ class Login {
           });
     }
     else{
-        // if(ImageError){
-        //     errors.array().push(ImageError)
-        // }
         res.status(422).json({ validationError: validationError });
     }
   }
