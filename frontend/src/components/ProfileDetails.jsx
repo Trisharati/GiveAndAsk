@@ -1,17 +1,20 @@
-import React, { useEffect, useState,  } from "react";
+import React, { useEffect, useState, } from "react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import OpenApi from "./OpenApi";
 import Footer from "./Footer";
+import { ClipLoader } from 'react-spinners';
 
 const ProfileDetails = () => {
   const navigate = useNavigate();
 
   const [info, setInfo] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const [finishStatus, setfinishStatus] = useState(false);
 
   const fetchDetails = async () => {
+    setIsLoading(true);
     OpenApi.get("/getmyinfo")
       .then((res) => {
         console.log("res", res);
@@ -20,8 +23,11 @@ const ProfileDetails = () => {
           info && console.log("info", info);
         }
       })
-      .catch((err) => {
+      .then(() => {
+        setIsLoading(false);
+      }).catch((err) => {
         console.log("Error in displaying info", err);
+        setIsLoading(false);
         if (err.response.status == 500) {
           toast.error(err.response.data.message);
           navigate("/");
@@ -37,24 +43,24 @@ const ProfileDetails = () => {
       });
   };
 
-  
-const onBackButtonEvent = (e) => {
+
+  const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (!finishStatus) {
-        if (window.confirm("Do you want to go to login window ?")) {
-            setfinishStatus(true)
-            navigate("/");
-        } else {
-            window.history.pushState(null, null, window.location.pathname);
-            setfinishStatus(false)
-        }
+      if (window.confirm("Do you want to go to login window ?")) {
+        setfinishStatus(true)
+        navigate("/");
+      } else {
+        window.history.pushState(null, null, window.location.pathname);
+        setfinishStatus(false)
+      }
     }
-}
+  }
   useEffect(() => {
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener('popstate', onBackButtonEvent);
     return () => {
-      window.removeEventListener('popstate', onBackButtonEvent);  
+      window.removeEventListener('popstate', onBackButtonEvent);
     };
   });
 
@@ -66,6 +72,10 @@ const onBackButtonEvent = (e) => {
   return (
     <div>
       <Navbar />
+      <div style={{ position: 'relative', top: '10%', left: '45%' }}>
+        {isLoading && <p style={{ fontSize: 20, color: '#AE0000' }}>Loading...</p>}
+        <ClipLoader color={'#123abc'} loading={isLoading} size={100} />
+      </div>
       {info && (
         <>
           <div className="mobile-container d-flex justify-content-center ">
@@ -88,7 +98,7 @@ const onBackButtonEvent = (e) => {
                       className="rounded-circle"
                     /> :
                     <img src="/vite.svg" width={100} className="rounded-circle" />} */}
-                    
+
                   <h3 className="mt-2">{info.name}</h3>
                   <span className="mt-1 clearfix">{info.mail}</span>
                   <span className="mt-1 clearfix">{info.phone}</span>

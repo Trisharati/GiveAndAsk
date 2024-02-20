@@ -31,6 +31,7 @@ const Giveableslist = () => {
       })
       .catch((err) => {
         console.log("error in fetching", err);
+        setIsLoading(false);
         if (err.response.status == 500) {
           toast.error(err.response.data.message);
         } else if (err.response.status == 400) {
@@ -51,15 +52,14 @@ const Giveableslist = () => {
 
   return (
     <div>
-
-      <div style={{ position: 'relative', top: '10%', left: '45%' }}>
-        {isLoading && <p style={{ fontSize: 20, color: '#AE0000' }}>Loading...</p>}
-        <ClipLoader color={'#123abc'} loading={isLoading}  size={100} />
-      </div>
-
       <Navbar />
-
-      <div class="mobile-container">
+      {isLoading ? 
+      <div style={{ position: 'relative', top: '10%', left: '45%' }}>
+       <p style={{ fontSize: 20, color: '#AE0000' }}>Loading...</p>
+      <ClipLoader color={'#123abc'} loading={isLoading} size={100} />
+    </div>
+    : 
+    <div class="mobile-container">
         <div class="row justify-content-center mt-3">
           <div class="col-md-12">
             <div class="card custom-card overflow-auto">
@@ -100,6 +100,9 @@ const Giveableslist = () => {
           </div>
         </div>
       </div>
+      }
+      
+      
       <Footer />
     </div>
   );
