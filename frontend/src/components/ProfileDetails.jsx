@@ -89,7 +89,7 @@ const ProfileDetails = () => {
                   <i className="far fa-edit"></i>
                 </a>
                 <div className="text-center">
-                  <img src="/public/img/evo_connect.png" width={100} className="rounded-circle" />
+                  <img src="/img/evo_connect.png" width={100} className="rounded-circle" />
                   {/* {`${OpenApi.defaults.imageURL}/evo_connect`!== '' ?
                     <img
                       src={`${OpenApi.defaults.baseURL}/${info.image}`}
