@@ -3,13 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import OpenApi from "./OpenApi";
 import { ClipLoader } from 'react-spinners';
-import { css } from '@emotion/react';
-
-const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-`;
 
 
 
@@ -21,7 +14,7 @@ const LoginForm = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
+  localStorage.clear()
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -98,7 +91,7 @@ const LoginForm = () => {
     <div>
       <div style={{ position:'relative',top:'10%',left:'45%'}}>
         {isLoading && <p style={{fontSize:20,color:'#AE0000'}}>Logging In...</p>}
-      <ClipLoader color={'#123abc'} loading={isLoading} css={override} size={100} />
+      <ClipLoader color={'#123abc'} loading={isLoading} size={100} />
       </div>
       
       <div class="full-width text-center">
