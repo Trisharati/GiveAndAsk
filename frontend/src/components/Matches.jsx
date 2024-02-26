@@ -64,7 +64,7 @@ const Matches = () => {
       <Navbar />
       {match.length ? (
         <div class="mobile-container">
-          <div class="row justify-content-center mt-5">
+          <div class="row justify-content-center mt-5" style={{marginBottom:'120px'}}>
             <div class="col-md-12">
               {match.map((x, index) => (
                 <div  key={index}>

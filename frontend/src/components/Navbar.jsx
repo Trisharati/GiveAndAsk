@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 const Navbar = () => {
     const navigate = useNavigate();
-
+    const userId = localStorage.getItem('userId')
    
   return (
     <div>
@@ -28,7 +28,7 @@ const Navbar = () => {
     </ul>
     <ul className="navbar-nav ml-auto">
     {/* <i class="fas fa-user"></i>  */}
-      <li className="nav-item dropdown">       
+      <li className="nav-item dropdown ml-auto d-flex">       
        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {/* <p></p> */}
         {localStorage.getItem('name')} <i class="fas fa-user"></i>
@@ -39,6 +39,9 @@ const Navbar = () => {
           <a className="dropdown-item" href="#" onClick={()=>navigate('/profiledetails')}>Profile</a>
           <div className="dropdown-divider"></div>
           
+        {userId==='65c47c1068e5b01ba5450c31' && <div> <a className="dropdown-item" href="#" onClick={()=>navigate('/allaccounts')}>All Accounts</a>
+          <div className="dropdown-divider"></div></div>}
+
           <a className="dropdown-item" href="#" onClick={()=>{navigate('/matches')}}>Matches</a>
             <div className="dropdown-divider"></div>
           <a className="dropdown-item" href="#" onClick={()=>{localStorage.clear();

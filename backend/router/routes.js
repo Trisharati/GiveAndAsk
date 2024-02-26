@@ -63,6 +63,8 @@ router.post("/updateprofile",
   })
 }
 ,updateValidation, loginController.updateInfo);
+router.get('/getallaccounts',loginController.getAllAccounts)
+router.get('/getaccount/:accountId',loginController.getAccountById)
 
 router.post("/creategiveable", formdataParser,giveValidation, giveaskController.createNeed);
 router.post("/createask", formdataParser,askValidation, giveaskController.createNeed);

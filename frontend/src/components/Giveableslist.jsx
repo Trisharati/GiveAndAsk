@@ -53,56 +53,57 @@ const Giveableslist = () => {
   return (
     <div>
       <Navbar />
-      {isLoading ? 
-      <div style={{ position: 'relative', top: '10%', left: '45%' }}>
-       <p style={{ fontSize: 20, color: '#AE0000' }}>Loading...</p>
-      <ClipLoader color={'#123abc'} loading={isLoading} size={100} />
-    </div>
-    : 
-    <div class="mobile-container">
-        <div class="row justify-content-center mt-3">
-          <div class="col-md-12">
-            <div class="card custom-card overflow-auto">
-              <div class="card-header d-flex justify-content-space-between align-items-center">
-                <h3>Giveables</h3>
-                <a className="add-but">
-                  <i
-                    class="fas fa-plus"
+      {isLoading ?
+        <div style={{ position: 'relative', top: '10%', left: '45%' }}>
+          <p style={{ fontSize: 20, color: '#AE0000' }}>Loading...</p>
+          <ClipLoader color={'#123abc'} loading={isLoading} size={100} />
+        </div>
+        :
+        <div class="mobile-container">
+          <div class="row justify-content-center mt-3">
+            <div class="col-md-12">
+              <div class="card custom-card overflow-auto" style={{marginBottom:'90px'}}>
+                <div class="card-header d-flex justify-content-space-between align-items-center">
+                  <h3>Giveables</h3>
+                  <a className="add-but">
+                    <i
+                      class="fas fa-plus"
 
-                    onClick={() => navigate("/giveableform")}
-                  ></i>
-                </a>
+                      onClick={() => navigate("/giveableform")}
+                    ></i>
+                  </a>
 
-              </div>
-              {give && (
-                <div class="card-body">
-                  <table class="table">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Giveable</th>
-                        <th scope="col">Created By</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {give.map((x, idx) => (
-                        <tr key={idx}>
-                          <th scope="row">{idx + 1}</th>
-                          <td>{x.give}</td>
-                          <td><b>{x.name}</b></td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
                 </div>
-              )}
+                {give && (
+                  <div class="card-body">
+                    <table class="table">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Giveable</th>
+                          <th scope="col">Created By</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {give.map((x, idx) => (
+                          <tr key={idx}>
+                            <th scope="row">{idx + 1}</th>
+                            <td>{x.give}</td>
+                            <td><b>{x.name}</b></td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+
             </div>
           </div>
         </div>
-      </div>
       }
-      
-      
+
+
       <Footer />
     </div>
   );

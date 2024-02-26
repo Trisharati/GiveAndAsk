@@ -12,7 +12,7 @@ class GiveAsk {
       res.status(422).json({ validationError: errors.array() });
     } else {
       console.log("body", req.body);
-      let userDetails = await userModel.findOne({ user_name: req.user_name });
+      let userDetails = await userModel.findOne({ _id: req.userId });
       if (req.body.give) {
         let giveObj = {
           user_id: userDetails._id,
@@ -200,7 +200,7 @@ class GiveAsk {
 
 
   async matches(req, res) {
-    let user = await userModel.findOne({ user_name: req.user_name });
+    let user = await userModel.findOne({ _id: req.userId });
     let mygiveask = await giveaskModel.find({ user_id: user._id });
     // console.log('giveask',giveask);
     let myAsk = mygiveask

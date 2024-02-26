@@ -19,8 +19,9 @@ class AuthJwt{
                 }
                 else{
                     // console.log('inside else');
-                    console.log('data',data);
+                    // console.log('data',data);
                     req.user_name = data.user_name
+                    req.userId = data.userId
                     next()
                 }
                 

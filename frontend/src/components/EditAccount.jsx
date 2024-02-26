@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import OpenApi from "./OpenApi";
 import Footer from "./Footer";
-const EditProfile = () => {
+const EditAccount = () => {
   const [info, setInfo] = useState();
   const [input, setInput] = useState({});
   const [error, setError] = useState({});
+  const {accountId} = useParams()
 
   const navigate = useNavigate();
 
-  const fetchDetails = async () => {
-    OpenApi.get("/getmyinfo")
+  const fetchAccount = async () => {
+    OpenApi.get(`/getaccount/${accountId}`)
       .then((res) => {
         console.log("res", res);
-        setInfo(res.data.MyInfo);
+        setInfo(res.data.AccountInfo);
       })
       .catch((err) => {
         console.log("Error in displaying info", err);
@@ -35,7 +36,7 @@ const EditProfile = () => {
   };
 
   useEffect(() => {
-    fetchDetails();
+    fetchAccount();
   }, []);
 
   const handleChange = (e) => {
@@ -76,7 +77,7 @@ const EditProfile = () => {
         .then((res) => {
           if (res.data.status == 1) {
             toast.success(res.data.message);
-            navigate("/profiledetails");
+            navigate("/allaccounts");
           }
         })
         .catch((err) => {
@@ -97,20 +98,7 @@ const EditProfile = () => {
               setError((prev)=>({...prev, [x.path]: x.msg }));
             });
             setInput({})
-            // setError({image:err.response.data.validationError})
-            // let errorData = {};
-            // console.log('arr', arr);
-            // arr.map((x) => {
-            //   if (errorData[x.path] == undefined) {
-            //     errorData[x.path] = x.msg;
-            //     setError((error) => ({ ...error, [x.path]: x.msg }));
-            //   }
-            // });
           } 
-          
-          // else if (err.response.status == 423) {
-          //   setError({ phone: err.response.data.message });
-          // }
         });
     }
   };
@@ -234,4 +222,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default EditAccount;

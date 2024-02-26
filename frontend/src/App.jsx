@@ -16,6 +16,8 @@ import MyAsks from "./components/MyAsks";
 import Home from "./components/Home";
 import EditMyGive from "./components/EditMyGive";
 import EditMyAsk from "./components/EditMyAsk";
+import AllAccounts from "./components/AllAccounts";
+import EditAccount from "./components/EditAccount";
 
 
 function App() {
@@ -32,6 +34,14 @@ function App() {
           <Route
             path="/profiledetails"
             element={<PrivateRoute Component={ProfileDetails} />}
+          />
+            <Route
+            path="/allaccounts"
+            element={<PrivateRoute Component={AllAccounts} />}
+          />
+              <Route
+            path="/editaccount/:accountId"
+            element={<PrivateRoute Component={EditAccount} />}
           />
           <Route
             path="/editprofile"

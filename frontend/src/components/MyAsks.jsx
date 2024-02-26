@@ -83,7 +83,7 @@ const MyAsks = () => {
     <div class="row justify-content-center mt-5">
       <div class="col-md-12">
         {ask.length ? 
-        <div class="card custom-card overflow-auto">
+        <div class="card custom-card overflow-auto" style={{marginBottom:'120px'}}>
         <div class="card-header ">
           <h3>My Asks</h3>
         </div>
@@ -120,7 +120,7 @@ const MyAsks = () => {
             </table>
           </div>
         
-      </div> : <div><b>You have not added any asks</b></div>
+      </div> : <div className="row justify-content-center"><b>You have not added any asks</b></div>
         }
         
       </div>

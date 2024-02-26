@@ -79,7 +79,7 @@ const ProfileDetails = () => {
       {info && (
         <>
           <div className="mobile-container d-flex justify-content-center ">
-            <div className="overflow-auto pb-5 custom-card">
+            <div className=" pb-5 custom-card" style={{marginBottom:'120px'}}>
               <div className="card p-3 py-4">
                 <a
                   href="#"
