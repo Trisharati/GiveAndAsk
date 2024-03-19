@@ -5,11 +5,16 @@ import { toast } from "react-toastify";
 import OpenApi from "./OpenApi";
 import Footer from "./Footer";
 import { ClipLoader } from 'react-spinners';
+import * as XLSX from 'xlsx';
+
 
 const Giveableslist = () => {
+  
+  const userId = localStorage.getItem('userId')
   const [give, setGive] = useState([]);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  
 
   const fetchGiveables = () => {
     setIsLoading(true);
@@ -50,6 +55,20 @@ const Giveableslist = () => {
     fetchGiveables();
   }, []);
 
+
+  const handleDownload = async () => {
+    var tbl = document.getElementById('table');
+    // Create a new workbook
+    var wb = XLSX.utils.book_new();
+    // Convert table to worksheet
+    var ws = XLSX.utils.table_to_sheet(tbl);
+    // Add the worksheet to the workbook with the desired sheet name
+    XLSX.utils.book_append_sheet(wb, ws, "Giveable List");
+    XLSX.writeFile(wb, "Giveables_EvoConnect.xlsx");
+  }
+
+
+
   return (
     <div>
       <Navbar />
@@ -62,21 +81,21 @@ const Giveableslist = () => {
         <div class="mobile-container">
           <div class="row justify-content-center mt-3">
             <div class="col-md-12">
-              <div class="card custom-card overflow-auto" style={{marginBottom:'90px'}}>
+              <div class="card custom-card overflow-auto" style={{ marginBottom: '90px' }}>
                 <div class="card-header d-flex justify-content-space-between align-items-center">
                   <h3>Giveables</h3>
                   <a className="add-but">
-                    <i
-                      class="fas fa-plus"
-
-                      onClick={() => navigate("/giveableform")}
-                    ></i>
+                    {userId==='65c47c1068e5b01ba5450c31' && 
+                    <i className="fas fa-download" onClick={handleDownload} data-toggle='tooltip' title='Download'></i>}
+                    &nbsp;&nbsp;
+                    <i class="fas fa-plus"
+                      onClick={() => navigate("/giveableform")} data-toggle='tooltip' title='Add'></i>
                   </a>
 
                 </div>
                 {give && (
                   <div class="card-body">
-                    <table class="table">
+                    <table class="table" id='table'>
                       <thead class="thead-dark">
                         <tr>
                           <th scope="col">#</th>

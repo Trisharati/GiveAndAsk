@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
 // const LoginForm = lazy(() => import("./components/LoginForm"))
 import LoginForm from "./components/LoginForm";
 import PrivateRoute from "./components/PrivateRoute";
@@ -35,11 +35,11 @@ function App() {
             path="/profiledetails"
             element={<PrivateRoute Component={ProfileDetails} />}
           />
-            <Route
+          <Route
             path="/allaccounts"
             element={<PrivateRoute Component={AllAccounts} />}
           />
-              <Route
+          <Route
             path="/editaccount/:accountId"
             element={<PrivateRoute Component={EditAccount} />}
           />

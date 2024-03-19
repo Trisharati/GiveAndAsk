@@ -57,7 +57,7 @@ class Login {
   }
 
   async updateInfo(req, res) {
-    console.log("body", req.body);
+    // console.log("body", req.body);
     // console.log("req.file", req.file);
     const errors = validationResult(req);
     let ImageError = req.uploadErr;

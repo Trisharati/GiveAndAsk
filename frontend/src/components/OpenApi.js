@@ -9,8 +9,8 @@ const setHeaders = async () => {
 };
 
 const OpenApi = axios.create({
-  // baseURL: 'https://give-and-ask-application.onrender.com',
-  baseURL: "http://localhost:2000",
+  baseURL: 'https://give-and-ask-application.onrender.com',
+  // baseURL: "http://localhost:2000",
   // imageURL:'https://intelligentappsolutionsdemo.com/img'
 });
 

@@ -5,9 +5,11 @@ import { toast } from 'react-toastify';
 import OpenApi from "./OpenApi";
 import Footer from './Footer';
 import { ClipLoader } from 'react-spinners';
+import * as XLSX from 'xlsx';
 
 const Asklist = () => {
 
+    const userId = localStorage.getItem('userId')
     const [ask, setAsk] = useState()
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate()
@@ -49,6 +51,21 @@ const Asklist = () => {
     useEffect(() => {
         fetchask()
     }, [])
+
+    const handleDownload = async () => {
+        var tbl = document.getElementById('table');
+        
+        // Create a new workbook
+        var wb = XLSX.utils.book_new();
+        // Convert table to worksheet
+        var ws = XLSX.utils.table_to_sheet(tbl);
+        // Add the worksheet to the workbook with the desired sheet name
+        XLSX.utils.book_append_sheet(wb, ws, "Ask List");
+        XLSX.writeFile(wb, "Asks_EvoConnect.xlsx");
+    }
+
+
+
     return (
         <div>
             <Navbar />
@@ -61,17 +78,22 @@ const Asklist = () => {
                 <div class="mobile-container">
                     <div class="row justify-content-center mt-3">
                         <div class="col-md-12">
-                            <div class="card custom-card overflow-auto" style={{marginBottom:'90px'}}>
+                            <div class="card custom-card overflow-auto" style={{ marginBottom: '90px' }}>
                                 <div class="card-header d-flex justify-content-space-between align-items-center">
                                     <h3>Ask</h3>
-                                    <a className="add-but"><i class="fas fa-plus" onClick={() => navigate('/askform')}></i></a>
+                                    <a className="add-but">
+                                    {userId==='65c47c1068e5b01ba5450c31' && 
+                                    <i className="fas fa-download" onClick={handleDownload} data-toggle='tooltip' title='Download'></i>}
+                                        &nbsp;&nbsp;
+                                        <i class="fas fa-plus" onClick={() => navigate('/askform')} data-toggle='tooltip' title='Add'></i>
+                                    </a>
                                 </div>
                                 {ask &&
                                     <div class="card-body">
-                                        <table class="table">
+                                        <table class="table" id='table'>
                                             <thead class="thead-dark">
                                                 <tr>
-                                                    <th scope="col">#</th>
+                                                    <th scope="col">Sl. No.</th>
                                                     <th scope="col">Requirements</th>
                                                     <th scope="col">Created By</th>
                                                 </tr>

@@ -11,7 +11,7 @@ class GiveAsk {
       console.log("form if");
       res.status(422).json({ validationError: errors.array() });
     } else {
-      console.log("body", req.body);
+      // console.log("body", req.body);
       let userDetails = await userModel.findOne({ _id: req.userId });
       if (req.body.give) {
         let giveObj = {
@@ -124,7 +124,7 @@ class GiveAsk {
   }
 
   async updateMyGive(req, res) {
-    console.log("body", req.body);
+    // console.log("body", req.body);
     giveaskModel
       .findOneAndUpdate(
         { user_id: req.params.userId, _id: req.params.giveId },
@@ -150,7 +150,7 @@ class GiveAsk {
   }
 
   async myAsk(req, res) {
-    console.log("req.params.userId", req.params.userId);
+    // console.log("req.params.userId", req.params.userId);
     let MyGiveAsk = await giveaskModel.find({ user_id: req.params.userId });
     let myasks = await MyGiveAsk.filter((x) => {
       return x.ask;
@@ -160,7 +160,7 @@ class GiveAsk {
   }
 
   async fetchSingleAsk(req, res) {
-    console.log("askid", req.params.askId);
+    // console.log("askid", req.params.askId);
     giveaskModel
       .findOne({ user_id: req.params.userId, _id: req.params.askId })
       .then((data) => {
@@ -173,7 +173,7 @@ class GiveAsk {
   }
 
   async updateMyAsk(req, res) {
-    console.log("body", req.body);
+    // console.log("body", req.body);
     giveaskModel
       .findOneAndUpdate(
         { user_id: req.params.userId, _id: req.params.askId },
